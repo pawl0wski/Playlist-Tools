@@ -3,15 +3,18 @@
 </template>
 
 <style lang="scss">
-
-  $bg-color: #05181D;
-  $main-color: #27FB6B;
-  $main-color-darker: #14CC60;
-  $content-color: #08262D;
+  *{
+    color: white;
+    font-family: 'RocknRoll One', sans-serif;
+  }
 
   body{
     margin: 0;
     background-color: $bg-color;
+  }
+
+  span.main-color{
+    color: $main-color
   }
 
 </style>
