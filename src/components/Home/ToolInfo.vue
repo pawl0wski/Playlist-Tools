@@ -1,5 +1,5 @@
 <template>
-  <div class="tool-info">
+  <div class="tool-info" :style="[reversed ? {'flex-direction': 'row-reverse'} : {'flex-direction': 'row'}]">
       <div class="tool-info-image">
           <img class="ornament" src="../../assets/ornament.svg" alt="">
           <img class="tool-image" :src="image" :alt="title">
@@ -26,13 +26,20 @@ export default {
         image: {
             type: String,
             required: true,
+        },
+        reversed: {
+            type: Boolean,
+            default: false,
         }
+    },
+    data() {
     }
 }
 </script>
 
 <style lang="scss" scoped>
     div.tool-info {
+
         width: 60%;
 
         min-height: 380px;
@@ -45,8 +52,8 @@ export default {
         justify-content: center;
 
         &-image {
-            width: 40%;
-            min-width: 425px;
+            width: 35%;
+            min-width: 350px;
             height: 400px;
 
             display: flex;
@@ -61,6 +68,8 @@ export default {
             }
 
             img.ornament {
+
+                width: 19%;
                 position: relative;
 
                 &:first-of-type {
@@ -85,6 +94,7 @@ export default {
             p {
                 opacity: 0.66;
                 width: 50%;
+                min-width: 200px;
             }
         }
     }

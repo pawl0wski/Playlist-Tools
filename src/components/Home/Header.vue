@@ -21,6 +21,7 @@ export default {
 
 <style lang="scss" scoped>
     header{
+
         background-image: url("../../assets/bgimage.jpg");
         background-size: cover;
         background-position: center;
@@ -28,6 +29,9 @@ export default {
         height: 400px;
 
         div#header-filter{
+
+            padding: 0px 20px;
+
             background: rgba(6, 31, 36, 0.69);
 
             height: 100%;

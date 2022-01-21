@@ -6,6 +6,7 @@
   *{
     color: white;
     font-family: 'RocknRoll One', sans-serif;
+    box-sizing: border-box;
   }
 
   body{
