@@ -17,7 +17,7 @@ export default {
         border-radius: 21px;
         border-style: none;
         
-        padding: 10px 20px;
+        padding: 10px 18px;
 
         display: flex;
         align-items: center;
@@ -28,7 +28,7 @@ export default {
 
         transition: background-color 0.15s;
 
-        font-size: 18px;
+        font-size: medium;
 
         img {
             width: 2em
