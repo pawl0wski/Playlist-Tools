@@ -14,12 +14,13 @@
 import { defineComponent } from 'vue';
 import Header from "@/components/Home/Header.vue";
 import ToolInfo from "@/components/Home/ToolInfo.vue";
+import Spinner from "@/components/Spinner.vue";
 
 export default defineComponent({
   name: 'Home',
   components: {
     Header,
-    ToolInfo
+    ToolInfo,
   }
 });
 </script>

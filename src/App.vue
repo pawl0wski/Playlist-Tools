@@ -1,5 +1,7 @@
 <template>
-  <router-view/>
+  <div id="view">
+    <router-view/>
+  </div>
   <Footer></Footer>
 </template>
 
@@ -22,6 +24,11 @@ export default {
   body{
     margin: 0;
     background-color: $bg-color;
+  }
+
+  div#view{
+    min-height: calc(100vh - 60px);
+    padding-bottom: 150px;
   }
 
   span.main-color{

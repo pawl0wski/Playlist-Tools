@@ -17,9 +17,9 @@ export default {
 
 <style lang="scss" scoped>
     footer{
+        height: 60px;
         text-align: center;
         width: 100%;
-        margin-top: 150px;
         padding: 1em 0px;
         background-color: $content-color;
     }
