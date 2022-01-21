@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <Header></Header>
+    <h2>What you can do with <span class="main-color">Spotify Tools</span>?</h2>
   </div>
 </template>
 
@@ -18,6 +19,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   div.home{
+    text-align: center;
 
+    h2 {
+      &:first-of-type {
+        margin-top: 2em;
+      }
+    }
   }
 </style>
