@@ -7,9 +7,19 @@
 
 <script lang="ts">
 import Spinner from "@/components/Spinner.vue";
+import { SpotifyCreator } from '@/libs/spotify_connector/spotify_creator';
 export default {
     components: {
         Spinner
+    },
+    async mounted () {
+        let urlParams = new URLSearchParams(window.location.hash.slice(1));
+        let authCode = urlParams.get("access_token");
+        if (typeof authCode === 'string' && authCode) {
+            let spotify = SpotifyCreator.createSpotifyWithDefaultApp();
+            await spotify.setAccessToken(authCode);
+        }
+            window.location.href = "/";
     }
 }
 </script>
