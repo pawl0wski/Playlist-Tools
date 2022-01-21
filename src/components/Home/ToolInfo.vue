@@ -8,6 +8,7 @@
       <div class="tool-info-text">
           <h2>{{title}}</h2>
           <p>{{description}}</p>
+          <a id="tool-info-link">Check it out ➔ </a>
       </div>
   </div>
 </template>
@@ -30,6 +31,11 @@ export default {
         reversed: {
             type: Boolean,
             default: false,
+        },
+        // Item name for Router
+        itemName: {
+            type: String,
+            required: true,
         }
     },
 }
@@ -93,6 +99,15 @@ export default {
                 opacity: 0.66;
                 width: 50%;
                 min-width: 200px;
+            }
+        }
+
+        a#tool-info-link{
+            color: $main-color;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
             }
         }
     }

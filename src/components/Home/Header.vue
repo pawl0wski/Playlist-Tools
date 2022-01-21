@@ -4,7 +4,7 @@
         <h1>
             Organize your playlists with <span class="main-color">Spotify Tools</span>.
         </h1>
-        <SpotifyLoginButton v-if="isAuthorized"></SpotifyLoginButton>
+        <SpotifyLoginButton v-if="!showLoginButton"></SpotifyLoginButton>
       </div>
   </header>
 </template>
@@ -17,7 +17,6 @@ export default {
     computed: {
         showLoginButton () {
             let spotify = SpotifyCreator.createSpotifyWithDefaultApp()
-            console.log(spotify.isAuthorized())
             return spotify.isAuthorized()
         }
     },

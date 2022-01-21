@@ -1,4 +1,5 @@
 <template>
+  <NavgiationBar></NavgiationBar>
   <div id="view">
     <router-view/>
   </div>
@@ -7,9 +8,12 @@
 
 <script lang="ts">
 import Footer from "@/components/Footer.vue";
+import NavgiationBar from "@/components/NavigationBar.vue";
+
 export default {
   components: {
     Footer,
+    NavgiationBar
   }
 }
 </script>
