@@ -2,17 +2,22 @@
   <div class="home">
     <Header></Header>
     <h2>What you can do with <span class="main-color">Spotify Tools</span>?</h2>
+    <div class="tools-wrapper">
+      <ToolInfo title="Some tool" description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem " image=""></ToolInfo>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Header from "@/components/Home/Header.vue";
+import ToolInfo from "@/components/Home/ToolInfo.vue";
 
 export default defineComponent({
   name: 'Home',
   components: {
-    Header
+    Header,
+    ToolInfo
   }
 });
 </script>
@@ -26,5 +31,11 @@ export default defineComponent({
         margin-top: 2em;
       }
     }
+
+    div.tools-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
   }
 </style>
