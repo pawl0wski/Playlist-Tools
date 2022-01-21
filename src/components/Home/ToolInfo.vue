@@ -32,8 +32,6 @@ export default {
             default: false,
         }
     },
-    data() {
-    }
 }
 </script>
 

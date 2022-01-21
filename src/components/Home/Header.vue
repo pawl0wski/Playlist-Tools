@@ -4,15 +4,23 @@
         <h1>
             Organize your playlists with <span class="main-color">Spotify Tools</span>.
         </h1>
-        <SpotifyLoginButton />
+        <SpotifyLoginButton v-if="isAuthorized"></SpotifyLoginButton>
       </div>
   </header>
 </template>
 
 <script lang="ts">
 import SpotifyLoginButton from "../SpotifyLoginButton.vue";
+import { SpotifyCreator } from '@/libs/spotify_connector/spotify_creator';
 
 export default {
+    computed: {
+        showLoginButton () {
+            let spotify = SpotifyCreator.createSpotifyWithDefaultApp()
+            console.log(spotify.isAuthorized())
+            return spotify.isAuthorized()
+        }
+    },
     components: {
         SpotifyLoginButton
     }

@@ -34,6 +34,10 @@ export class SpotifyConnector{
         return SpotifyConnector.instance;
     }
 
+    public isAuthorized() : boolean {
+        return !!localStorage.getItem("accessToken");
+    }
+
     public getAuthUrl() : string{
         let authUrl = "https://accounts.spotify.com/authorize?";
         let authUrlParams = new URLSearchParams();
