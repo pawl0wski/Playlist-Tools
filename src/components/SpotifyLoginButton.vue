@@ -1,13 +1,20 @@
 <template>
-    <button>
+    <button @click="loginToSpotify">
         <img src="../assets/spotifyLogo.svg">
         Log in with Spotify
     </button>
 </template>
 
 <script>
+import { SpotifyCreator } from "@/libs/spotify_connector/spotify_creator";
 export default {
-
+    methods: {
+        loginToSpotify () {
+            let spotify = SpotifyCreator.createSpotifyWithDefaultApp();
+            let authUrl = spotify.getAuthUrl();
+            document.location.href = authUrl;
+        }
+    }
 }
 </script>
 
