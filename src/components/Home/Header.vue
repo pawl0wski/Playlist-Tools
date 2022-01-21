@@ -22,7 +22,7 @@ export default {
 <style lang="scss" scoped>
     header{
         background-image: url("../../assets/bgimage.jpg");
-        background-size: 100%;
+        background-size: cover;
         background-position: center;
 
         height: 400px;
