@@ -30,7 +30,7 @@ export default defineComponent({
 
     h2 {
       &:first-of-type {
-        margin-top: 2em;
+        margin: 2em 0px;
       }
     }
 
