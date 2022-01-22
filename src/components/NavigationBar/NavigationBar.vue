@@ -5,7 +5,7 @@
     </router-link>
     <NavigationContent v-if="!burgerMode"></NavigationContent>
     <NavigationUser :avatarUrl="avatarUrl" :username="username" v-if="isAuthorized && !burgerMode" @logOut="logOut"></NavigationUser>
-    <NavigationBurgerBtn v-if="burgerMode" @click="toggleBurgerMenu"></NavigationBurgerBtn>
+    <NavigationBurgerBtn v-if="burgerMode" @click="toggleBurgerMenu" :isOn="burgerMenuShowed"></NavigationBurgerBtn>
   </nav>
   <div class="burger-menu" :style="{top: burgerMenuShowed ? '60px' : '-70px'}" v-if="burgerMode">
     <NavigationContent></NavigationContent>
@@ -102,6 +102,7 @@ export default defineComponent ({
         transition: 0.25s top;
         width: 100vw;
         background-color: $bg-color;
+        z-index: 49;
 
 
         display: flex;

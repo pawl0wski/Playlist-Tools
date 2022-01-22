@@ -1,8 +1,16 @@
 <template>
     <div class="navigation-burger-button">
-        <i class="fas fa-bars"></i>
+        <i :class="['fas', isOn ? 'fa-times' : 'fa-bars']"></i>
     </div>
 </template>
+
+<script lang="ts">
+export default ({
+    props:{
+        isOn: Boolean
+    }
+})
+</script>
 
 <style lang="scss" scoped>
     div.navigation-burger-button{
