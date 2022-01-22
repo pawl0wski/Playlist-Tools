@@ -1,7 +1,7 @@
 <template>
-  <NavgiationBar></NavgiationBar>
+  <NavgiationBar ref="navigationBar"></NavgiationBar>
   <div id="view">
-    <router-view/>
+    <router-view @new-authorized="$refs.navigationBar.reload()"></router-view>
   </div>
   <Footer></Footer>
 </template>
@@ -14,7 +14,7 @@ export default {
   components: {
     Footer,
     NavgiationBar
-  }
+  },
 }
 </script>
 

@@ -18,6 +18,7 @@ export default defineComponent ({
             name: "Spotify Tools",
             avatarUrl: "",
             username: "",
+            isAuthorized: false,
         }
     },
     methods: {
@@ -25,23 +26,28 @@ export default defineComponent ({
             let spotify = SpotifyCreator.createSpotifyWithDefaultApp()
             spotify.logOut()
             window.location.reload()
+        },
+        reload () {
+            this.updateSpotifyData()
+        },
+        updateSpotifyData() {
+            let spotify = SpotifyCreator.createSpotifyWithDefaultApp()
+            let isAuthorized = spotify.isAuthorized()
+            console.log(isAuthorized);
+            if (isAuthorized) {
+                this.$data.isAuthorized = isAuthorized;
+                spotify.getAvatarUrl().then((avatarUrl) => {
+                    this.$data.avatarUrl = avatarUrl;
+                })
+                spotify.getUsername().then((username) => {
+                    this.$data.username = username;
+                });
+            }
         }
     },
-    computed: {
-        isAuthorized () : boolean {
-            let spotify = SpotifyCreator.createSpotifyWithDefaultApp()
-            return spotify.isAuthorized()
-        },
+    beforeMount() {
+        this.updateSpotifyData()
     },
-    created() {
-        let spotify = SpotifyCreator.createSpotifyWithDefaultApp()
-        spotify.getAvatarUrl().then((avatarUrl) => {
-            this.$data.avatarUrl = avatarUrl;
-        })
-        spotify.getUsername().then((username) => {
-            this.$data.username = username;
-        });
-    }
 })
 </script>
 

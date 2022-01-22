@@ -32,12 +32,15 @@ export default defineComponent({
   },
   mounted() {
     if (this.newAuthorized) {
+      this.$emit("new-authorized")
       Swal.mixin({
         toast: true,
         position: "top-end",
         timer: 3000,
         timerProgressBar: true,
         showConfirmButton: false,
+        background: "#08262D",
+        color: "white",
       }).fire({
         icon: "success",
         title: "Signed in."

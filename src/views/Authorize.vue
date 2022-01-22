@@ -19,8 +19,8 @@ export default defineComponent({
         if (typeof authCode === 'string' && authCode) {
             let spotify = SpotifyCreator.createSpotifyWithDefaultApp();
             await spotify.setAccessToken(authCode);
+            await this.$router.push({name: "Home", params: {newAuthorized: 1}})
         }
-        this.$router.replace({name: "Home", params: {newAuthorized: "true"}})
     }
 })
 </script>
