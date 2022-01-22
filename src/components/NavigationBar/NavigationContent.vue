@@ -12,5 +12,6 @@
     a{
         text-decoration: none;
         opacity: 0.5;
+        color: white;
     }
 </style>
