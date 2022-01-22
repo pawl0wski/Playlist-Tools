@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import Footer from "@/components/Footer.vue";
-import NavgiationBar from "@/components/NavigationBar.vue";
+import NavgiationBar from "@/components/NavigationBar/NavigationBar.vue";
 
 export default {
   components: {

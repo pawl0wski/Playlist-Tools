@@ -3,22 +3,15 @@
       <router-link to="/">
           <h3>{{name}}</h3>
       </router-link>
-      <router-link to="/tools">
-        Tools
-      </router-link>
-      <router-link to="/about">
-        About
-      </router-link>
-      <div class="user-info" v-if="isAuthorized">
-        <div class="avatar-circle" :style="{backgroundImage: 'url(' + avatarUrl + ')'}"></div>
-        {{username}}
-        <i id="logout" @click="logOut" class="fas fa-sign-out-alt"></i>
-      </div>
+      <NavigationContent v-if="!burgerMode"></NavigationContent>
+      <NavigationUser :avatarUrl="avatarUrl" :username="username" v-if="isAuthorized && !burgerMode" @logOut="logOut"></NavigationUser>
   </nav>
 </template>
 
 <script lang="ts">
 import { SpotifyCreator } from "@/libs/spotify_connector/spotify_creator";
+import NavigationUser from "@/components/NavigationBar/NavigationUser.vue";
+import NavigationContent from "@/components/NavigationBar/NavigationContent.vue";
 import { defineComponent } from "vue";
 export default defineComponent ({
     data() {
@@ -27,7 +20,12 @@ export default defineComponent ({
             avatarUrl: "",
             username: "",
             isAuthorized: false,
+            burgerMode: false,
         }
+    },
+    components: {
+        NavigationUser,
+        NavigationContent
     },
     methods: {
         logOut() {
@@ -41,7 +39,6 @@ export default defineComponent ({
         updateSpotifyData() {
             let spotify = SpotifyCreator.createSpotifyWithDefaultApp()
             let isAuthorized = spotify.isAuthorized()
-            console.log(isAuthorized);
             if (isAuthorized) {
                 this.$data.isAuthorized = isAuthorized;
                 spotify.getAvatarUrl().then((avatarUrl) => {
@@ -55,6 +52,11 @@ export default defineComponent ({
     },
     beforeMount() {
         this.updateSpotifyData()
+        window.addEventListener("resize", () => {
+            console.log("Resize!")
+            this.$data.burgerMode = window.innerWidth < 570;
+            console.log(this.$data.burgerMode)
+        })
     },
 })
 </script>
@@ -79,33 +81,6 @@ export default defineComponent ({
             h3{
                 margin: 0;
             }
-
-            &:not(:first-child){
-                opacity: 0.5;
-            }
         }
-
-
-        div.user-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8em;
-            margin-left: auto;
-
-            div.avatar-circle {
-                width: 40px;
-                height: 40px;
-                background-position: center;
-                background-size: cover;
-                border-radius: 100%;
-            }
-
-            i#logout{
-                cursor: pointer;
-            }
-        }
-
-
     }
 </style>
