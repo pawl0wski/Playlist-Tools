@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
-import Authorize from '../views/Authorize.vue'
+import Home from '../views/HomeView.vue'
+import Authorize from '../views/AuthorizeView.vue'
+import Tools from '../views/ToolsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -13,6 +14,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/authorize',
     name: 'Authorize',
     component: Authorize
+  },
+  {
+    path: '/tools',
+    name: 'Tools',
+    component: Tools
   },
 ]
 

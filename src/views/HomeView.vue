@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Header from "@/components/Home/Header.vue";
-import ToolInfo from "@/components/Home/ToolInfo.vue";
+import Header from "@/components/HomeView/Header.vue";
+import ToolInfo from "@/components/HomeView/ToolInfo.vue";
 
 import Swal from 'sweetalert2'
 
