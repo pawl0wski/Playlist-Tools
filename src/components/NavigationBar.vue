@@ -1,6 +1,14 @@
 <template>
   <nav>
-      <h3>{{name}}</h3>
+      <router-link to="/">
+          <h3>{{name}}</h3>
+      </router-link>
+      <router-link to="/tools">
+        Tools
+      </router-link>
+      <router-link to="/about">
+        About
+      </router-link>
       <div class="user-info" v-if="isAuthorized">
         <div class="avatar-circle" :style="{backgroundImage: 'url(' + avatarUrl + ')'}"></div>
         {{username}}
@@ -25,7 +33,7 @@ export default defineComponent ({
         logOut() {
             let spotify = SpotifyCreator.createSpotifyWithDefaultApp()
             spotify.logOut()
-            window.location.reload()
+            this.$router.go(0)
         },
         reload () {
             this.updateSpotifyData()
@@ -64,9 +72,19 @@ export default defineComponent ({
 
         padding: 0px 1em;
 
-        h3{
-            margin: 0
+        gap: 2em;
+
+        a{
+            text-decoration: none;
+            h3{
+                margin: 0;
+            }
+
+            &:not(:first-child){
+                opacity: 0.5;
+            }
         }
+
 
         div.user-info {
             display: flex;

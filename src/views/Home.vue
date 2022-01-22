@@ -35,8 +35,8 @@ export default defineComponent({
       this.$emit("new-authorized")
       Swal.mixin({
         toast: true,
-        position: "top-end",
-        timer: 3000,
+        position: "bottom-end",
+        timer: 5000,
         timerProgressBar: true,
         showConfirmButton: false,
         background: "#08262D",
