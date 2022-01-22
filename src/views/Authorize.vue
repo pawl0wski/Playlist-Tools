@@ -8,7 +8,8 @@
 <script lang="ts">
 import Spinner from "@/components/Spinner.vue";
 import { SpotifyCreator } from '@/libs/spotify_connector/spotify_creator';
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
     components: {
         Spinner
     },
@@ -19,9 +20,9 @@ export default {
             let spotify = SpotifyCreator.createSpotifyWithDefaultApp();
             await spotify.setAccessToken(authCode);
         }
-            window.location.href = "/";
+        this.$router.replace({name: "Home", params: {newAuthorized: "true"}})
     }
-}
+})
 </script>
 
 <style lang="scss" scoped>

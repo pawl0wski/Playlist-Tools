@@ -15,11 +15,34 @@ import { defineComponent } from 'vue';
 import Header from "@/components/Home/Header.vue";
 import ToolInfo from "@/components/Home/ToolInfo.vue";
 
+import Swal from 'sweetalert2'
+
 export default defineComponent({
   name: 'Home',
+  props: {
+      // Set this after new authorization. If it is true, Home will show info about successful login.
+      newAuthorized: {
+          type: Boolean,
+          required: false,
+      }
+    },
   components: {
     Header,
     ToolInfo,
+  },
+  mounted() {
+    if (this.newAuthorized) {
+      Swal.mixin({
+        toast: true,
+        position: "top-end",
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      }).fire({
+        icon: "success",
+        title: "Signed in."
+      })
+    }
   }
 });
 </script>
