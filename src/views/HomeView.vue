@@ -32,7 +32,7 @@ export default defineComponent({
   },
   mounted() {
     if (this.newAuthorized) {
-      this.$emit("new-authorized")
+      this.$emit("newAuthorized")
       Swal.mixin({
         toast: true,
         position: "bottom-end",

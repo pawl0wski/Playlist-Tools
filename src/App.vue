@@ -1,7 +1,7 @@
 <template>
   <NavgiationBar ref="navigationBar"></NavgiationBar>
   <div id="view">
-    <router-view @new-authorized="$refs.navigationBar.reload()"></router-view>
+    <router-view @newAuthorized="$refs.navigationBar.reload()"></router-view>
   </div>
   <Footer></Footer>
 </template>
