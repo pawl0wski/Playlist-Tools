@@ -2,7 +2,7 @@
     <UserHeader :avatarUrl="avatarUrl" :username="username" />
     <h2>Select <span class="main-color">tool</span> to continue.</h2>
     <div class="tools-wrapper">
-        <router-link class="router-link" :to="{path: '/tools/playlists', params: {onlyMyPlaylists: true}}">
+        <router-link class="router-link" :to="{name: 'PlaylistsSelector', params: {onlyMyPlaylists: true}}">
             <Tool icon="fas fa-broom" title="Remove <span class='main-color'>duplications</span>." description="Remove duplicated songs in your playlist." />
         </router-link>
         <Tool icon="fas fa-filter" title="Remove songs by <span class='main-color'>filter</span>." description="Remove duplicated songs in your playlist." />

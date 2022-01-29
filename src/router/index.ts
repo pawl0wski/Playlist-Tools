@@ -23,8 +23,11 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/tools/playlists',
-    name: 'Playlists Selector',
-    component: PlaylistsSelector
+    name: 'PlaylistsSelector',
+    component: PlaylistsSelector,
+    props: {
+      onlyMyPlaylists: false
+    }
   },
 ]
 
