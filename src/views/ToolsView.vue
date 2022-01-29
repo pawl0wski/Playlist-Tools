@@ -1,8 +1,10 @@
 <template>
-    <Header :avatarUrl="avatarUrl" :username="username" />
+    <UserHeader :avatarUrl="avatarUrl" :username="username" />
     <h2>Select <span class="main-color">tool</span> to continue.</h2>
     <div class="tools-wrapper">
-        <Tool icon="fas fa-broom" title="Remove <span class='main-color'>duplications</span>." description="Remove duplicated songs in your playlist." />
+        <router-link class="router-link" :to="{path: '/tools/playlists', params: {onlyMyPlaylists: true}}">
+            <Tool icon="fas fa-broom" title="Remove <span class='main-color'>duplications</span>." description="Remove duplicated songs in your playlist." />
+        </router-link>
         <Tool icon="fas fa-filter" title="Remove songs by <span class='main-color'>filter</span>." description="Remove duplicated songs in your playlist." />
         <Tool icon="fas fa-broom" title="Remove <span class='main-color'>intros</span>." description="Remove duplicated songs in your playlist." />
         <Tool icon="fas fa-copy" title="<span class='main-color'>Copy</span> playlist." description="Remove duplicated songs in your playlist." />
@@ -11,14 +13,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Header from '@/components/ToolsView/Header.vue';
+import UserHeader from '@/components/UserHeader.vue';
 import Tool from '@/components/ToolsView/Tool.vue';
 import { SpotifyCreator } from '@/libs/spotify_connector/spotify_creator';
 import Swal from 'sweetalert2'
 
 export default defineComponent({
     components: {
-        Header,
+        UserHeader,
         Tool
     },
     data() {
@@ -50,6 +52,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+    a.router-link{
+        text-decoration: none;
+    }
+
     h2:first-of-type{
         text-align: center;
     }

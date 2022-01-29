@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/HomeView.vue'
 import Authorize from '../views/AuthorizeView.vue'
 import Tools from '../views/ToolsView.vue'
+import PlaylistsSelector from '../views/PlaylistsSelector.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/tools',
     name: 'Tools',
     component: Tools
+  },
+  {
+    path: '/tools/playlists',
+    name: 'Playlists Selector',
+    component: PlaylistsSelector
   },
 ]
 

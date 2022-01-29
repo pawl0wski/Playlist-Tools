@@ -55,6 +55,7 @@ export class SpotifyConnector {
     }
 
     public async getUsername(): Promise<string> {
+        // Check if user is in localStorage if not get username from spotifyApi
         if (localStorage.getItem("userUsername")) {
             return localStorage.getItem("userUsername")!
         } else {
@@ -95,7 +96,7 @@ export class SpotifyConnector {
         }
     }
 
-    public async getMyPlaylists(query?: string): Promise<any> {
+    public async getMyPlaylists(onlyCreatedByMe: boolean = true): Promise<any> {
         let myPlaylists = await this.spotifyApi.getUserPlaylists();
 
         let authToken = await this.spotifyApi.getAccessToken()!
@@ -119,11 +120,13 @@ export class SpotifyConnector {
         let playlists = [...myPlaylists.items, ...await getAllPlaylistsByRecursion(myPlaylists.next, authToken)]
         
         // Filter only users's playlists
+        if (onlyCreatedByMe) {
+            let userDisplayName = await this.getUsername()
+            playlists = playlists.filter((playlist) => {
+                return playlist.owner.display_name === userDisplayName
+            })
+        }
 
-        let userDisplayName = await this.getUsername()
-        playlists = playlists.filter((playlist) => {
-            return playlist.owner.display_name === userDisplayName
-        })
 
         return playlists
     }

@@ -23,7 +23,7 @@ export default defineComponent({
       // Set this after new authorization. If it is true, Home will show info about successful login.
       newAuthorized: {
           type: Boolean,
-          required: false,
+          default: false,
       }
     },
   components: {
