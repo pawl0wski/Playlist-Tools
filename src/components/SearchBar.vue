@@ -12,6 +12,7 @@ export default defineComponent({
             content: ""
         }
     },
+    emits: ["changeSearchValue"],
     methods: {
         handleInput (e: InputEvent) {
             this.$emit("changeSearchValue", this.$data.content)
