@@ -95,4 +95,37 @@ export class SpotifyConnector {
         }
     }
 
+    public async getMyPlaylists(query?: string): Promise<any> {
+        let myPlaylists = await this.spotifyApi.getUserPlaylists();
+
+        let authToken = await this.spotifyApi.getAccessToken()!
+        
+        // Make function for getting playlists recursive by pages
+        let getAllPlaylistsByRecursion = async (nextPage : string, accessToken : string): Promise<any[]> => {
+            let data = await axios.get(nextPage, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}` 
+                }
+            })
+            let playlists;
+            if (data.data.next) {
+                playlists = [...data.data.items, ...await getAllPlaylistsByRecursion(data.data.next, accessToken)]
+            }else{
+                playlists = data.data.items
+            }
+            return playlists
+        }
+
+        let playlists = [...myPlaylists.items, ...await getAllPlaylistsByRecursion(myPlaylists.next, authToken)]
+        
+        // Filter only users's playlists
+
+        let userDisplayName = await this.getUsername()
+        playlists = playlists.filter((playlist) => {
+            return playlist.owner.display_name === userDisplayName
+        })
+
+        return playlists
+    }
+
 }

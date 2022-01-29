@@ -7,7 +7,7 @@
     <NavigationUser :avatarUrl="avatarUrl" :username="username" v-if="isAuthorized && !burgerMode" @logOut="logOut"></NavigationUser>
     <NavigationBurgerBtn v-if="burgerMode" @click="toggleBurgerMenu" :isOn="burgerMenuShowed"></NavigationBurgerBtn>
   </nav>
-  <div class="burger-menu" :style="{top: burgerMenuShowed ? '60px' : '-70px'}" v-if="burgerMode">
+  <div class="burger-menu" :style="{top: burgerMenuShowed ? '60px' : '-100px'}" v-if="burgerMode">
     <NavigationContent></NavigationContent>
     <NavigationUser :avatarUrl="avatarUrl" :username="username" v-if="isAuthorized" @logOut="logOut"></NavigationUser>
   </div>
@@ -98,7 +98,7 @@ export default defineComponent ({
 
     div.burger-menu {
         position: fixed;
-        top: -100%;
+        top: -125%;
         transition: 0.25s top;
         width: 100vw;
         background-color: $bg-color;

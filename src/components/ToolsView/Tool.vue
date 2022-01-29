@@ -30,6 +30,7 @@ export default defineComponent({
     div.toolview-tool{
         background-color: $content-color;
         width: 250px;
+        height: 300px;
         padding: 2em;
 
         border-radius: $border-radius;
