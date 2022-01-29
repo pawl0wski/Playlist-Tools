@@ -3,6 +3,7 @@
   <h2>Select <span class="main-color">playlist</span>.</h2>
   <SearchBar @changeSearchValue="handleChangeSearchValue" />
   <div class="playlists-wrapper">
+      <Spinner v-if="fetching" />
       <Playlist :key="playlist" v-for="playlist in filteredPlaylists" :description="playlist.description" :title="playlist.name" :imageUrl="playlist.images[0].url" />
   </div>
 </template>
@@ -12,12 +13,14 @@ import { defineComponent} from 'vue'
 import { SpotifyCreator } from "@/libs/spotify_connector/spotify_creator"
 import UserHeader from "@/components/UserHeader.vue"
 import SearchBar from "@/components/SearchBar.vue"
+import Spinner from '@/components/Spinner.vue';
 import Playlist from "@/components/PlaylistSelector/Playlist.vue"
 export default defineComponent({
     components: {
         UserHeader,
         SearchBar,
         Playlist,
+        Spinner
     },
     computed: {
         filteredPlaylists(): {} {
@@ -30,7 +33,8 @@ export default defineComponent({
             playlists: [],
             onlyMyPlaylists: this.$route.params.onlyMyPlaylists,
             username: "",
-            avatarUrl: ""
+            avatarUrl: "",
+            fetching: true,
         }
     },
     methods: {
@@ -50,6 +54,7 @@ export default defineComponent({
         if (onlyMyPlaylists) {
             this.$data.playlists = await spotify.getMyPlaylists(onlyMyPlaylists)
         }
+        this.$data.fetching = false;
     }
 })
 </script>
