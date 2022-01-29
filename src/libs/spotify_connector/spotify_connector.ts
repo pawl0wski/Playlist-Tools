@@ -30,6 +30,8 @@ export class SpotifyConnector {
     public logOut() {
         this.spotifyApi.setAccessToken("");
         localStorage.removeItem("accessToken");
+        localStorage.removeItem("userUsername");
+        localStorage.removeItem("userAvatar");
     }
 
     public static getInstance(clientId: string, redirectUrl: string, scope: string): SpotifyConnector {
