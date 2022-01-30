@@ -1,60 +1,59 @@
 <template>
-  <header>
-      <div id="header-filter">
-        <h1>
-            Organize your playlists with <span class="main-color">Spotify Tools</span>.
-        </h1>
-        <SpotifyLoginButton v-if="!showLoginButton"></SpotifyLoginButton>
-      </div>
-  </header>
+    <header>
+        <div id="header-filter">
+            <h1>
+                Organize your playlists with
+                <span class="main-color">Spotify Tools</span>.
+            </h1>
+            <SpotifyLoginButton v-if="!showLoginButton"></SpotifyLoginButton>
+        </div>
+    </header>
 </template>
 
 <script lang="ts">
 import SpotifyLoginButton from "../SpotifyLoginButton.vue";
-import { SpotifyCreator } from '@/libs/spotify_connector/spotify_creator';
+import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
 
 export default {
     computed: {
-        showLoginButton () {
-            let spotify = SpotifyCreator.createSpotifyWithDefaultApp()
-            return spotify.isAuthorized()
-        }
+        showLoginButton() {
+            let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+            return spotify.isAuthorized();
+        },
     },
     components: {
-        SpotifyLoginButton
-    }
-}
+        SpotifyLoginButton,
+    },
+};
 </script>
 
 <style lang="scss" scoped>
-    header{
+header {
+    background-image: url("../../assets/bgimage.jpg");
+    background-size: cover;
+    background-position: center;
 
-        background-image: url("../../assets/bgimage.jpg");
-        background-size: cover;
-        background-position: center;
+    height: 400px;
 
-        height: 400px;
+    div#header-filter {
+        padding: 0px 20px;
 
-        div#header-filter{
+        background: rgba(6, 31, 36, 0.69);
 
-            padding: 0px 20px;
+        height: 100%;
+        width: 100%;
 
-            background: rgba(6, 31, 36, 0.69);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-            height: 100%;
-            width: 100%;
-        
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        gap: 2em;
 
-            gap: 2em;
-
-            h1{
-                margin: 0;
-                text-align: center;
-            }
+        h1 {
+            margin: 0;
+            text-align: center;
         }
     }
+}
 </style>

@@ -1,63 +1,65 @@
 <template>
     <div class="playlist">
-        <div :style="{backgroundImage: 'url(' + imageUrl + ')'}" class="playlist-cover"></div>
-        <h3 class="playlist-title">{{title}}</h3>
-        <p class="playlist-description">{{description}}</p>
+        <div
+            :style="{ backgroundImage: 'url(' + imageUrl + ')' }"
+            class="playlist-cover"
+        ></div>
+        <h3 class="playlist-title">{{ title }}</h3>
+        <p class="playlist-description">{{ description }}</p>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
     props: {
-        title: String, 
+        title: String,
         description: String,
         imageUrl: String,
-    }
-
-})
+    },
+});
 </script>
 
 <style lang="scss" scoped>
-    div.playlist{
-        background-color: $content-color;
-        width: 230px;
-        min-height: 300px;
-        padding: 1em;
+div.playlist {
+    background-color: $content-color;
+    width: 230px;
+    min-height: 300px;
+    padding: 1em;
 
+    border-radius: $border-radius;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: 0.1s background-color;
+
+    h3.playlist-title {
+        margin-top: 1em;
+        margin-bottom: 0;
+    }
+
+    div.playlist-cover {
+        width: calc(230px / 10 * 9);
+        height: calc(230px / 10 * 9);
         border-radius: $border-radius;
 
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-
-        cursor: pointer;
-
-        transition: 0.1s background-color;
-
-        h3.playlist-title{
-            margin-top: 1em;
-            margin-bottom: 0;
-        }
-
-        div.playlist-cover{
-            width: calc( 230px / 10 * 9 );
-            height: calc( 230px / 10 * 9 );
-            border-radius: $border-radius;
-
-            background-size: cover;
-            background-position: center;
-        }
-
-        p.playlist-description {
-            opacity: 0.66;
-            margin: 0.5em 0;
-        }
-
-        &:hover{
-            background-color: lighten($color: $content-color, $amount: 0.7);
-        }
+        background-size: cover;
+        background-position: center;
     }
+
+    p.playlist-description {
+        opacity: 0.66;
+        margin: 0.5em 0;
+    }
+
+    &:hover {
+        background-color: lighten($color: $content-color, $amount: 0.7);
+    }
+}
 </style>

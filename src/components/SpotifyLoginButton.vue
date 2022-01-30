@@ -1,48 +1,47 @@
 <template>
     <button @click="loginToSpotify">
-        <img src="../assets/spotifyLogo.svg">
+        <img src="../assets/spotifyLogo.svg" />
         Log in with Spotify
     </button>
 </template>
 
 <script>
-import { SpotifyCreator } from "@/libs/spotify_connector/spotify_creator";
+import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
 export default {
     methods: {
-        loginToSpotify () {
-            let spotify = SpotifyCreator.createSpotifyWithDefaultApp();
-            let authUrl = spotify.getAuthUrl();
-            document.location.href = authUrl;
-        }
-    }
-}
+        loginToSpotify() {
+            let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+            spotify.logIn();
+        },
+    },
+};
 </script>
 
 <style lang="scss" scoped>
-    button{
-        background-color: $main-color-darker;
-        border-radius: 21px;
-        border-style: none;
-        
-        padding: 10px 18px;
+button {
+    background-color: $main-color-darker;
+    border-radius: 21px;
+    border-style: none;
 
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1em;
+    padding: 10px 18px;
 
-        cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
 
-        transition: background-color 0.15s;
+    cursor: pointer;
 
-        font-size: medium;
+    transition: background-color 0.15s;
 
-        img {
-            width: 2em
-        }
+    font-size: medium;
 
-        &:hover{
-            background-color: $main-color;
-        }
+    img {
+        width: 2em;
     }
+
+    &:hover {
+        background-color: $main-color;
+    }
+}
 </style>

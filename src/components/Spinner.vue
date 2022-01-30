@@ -3,7 +3,7 @@
 </template>
 
 <style lang="scss" scoped>
-    .loader {
+.loader {
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -13,9 +13,9 @@
     border-color: $content-color $content-color transparent transparent;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
-    }
-    .loader::after,
-    .loader::before {
+}
+.loader::after,
+.loader::before {
     content: "";
     box-sizing: border-box;
     position: absolute;
@@ -32,28 +32,28 @@
     box-sizing: border-box;
     animation: rotationBack 0.5s linear infinite;
     transform-origin: center center;
-    }
-    .loader::before {
+}
+.loader::before {
     width: 32px;
     height: 32px;
     border-color: $content-color $content-color transparent transparent;
     animation: rotation 1.5s linear infinite;
-    }
+}
 
-    @keyframes rotation {
+@keyframes rotation {
     0% {
         transform: rotate(0deg);
     }
     100% {
         transform: rotate(360deg);
     }
-    }
-    @keyframes rotationBack {
+}
+@keyframes rotationBack {
     0% {
         transform: rotate(0deg);
     }
     100% {
         transform: rotate(-360deg);
     }
-    }
+}
 </style>

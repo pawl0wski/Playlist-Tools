@@ -7,36 +7,43 @@
 
 <script lang="ts">
 import Spinner from "@/components/Spinner.vue";
-import { SpotifyCreator } from '@/libs/spotify_connector/spotify_creator';
+import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
 import { defineComponent } from "vue";
 export default defineComponent({
     components: {
-        Spinner
+        Spinner,
     },
-    async mounted () {
+    async mounted() {
         let urlParams = new URLSearchParams(window.location.hash.slice(1));
-        let authCode = urlParams.get("access_token");
-        if (typeof authCode === 'string' && authCode) {
-            let spotify = SpotifyCreator.createSpotifyWithDefaultApp();
-            await spotify.setAccessToken(authCode);
-            await this.$router.push({name: "Home", params: {newAuthorized: 1}})
+        let authorizationToken = urlParams.get("access_token");
+        let expiresIn = urlParams.get("expires_in");
+        if (expiresIn && authorizationToken) {
+            let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+            spotify.setAuthorizationToken(
+                authorizationToken,
+                parseInt(expiresIn)
+            );
+            await this.$router.push({
+                name: "Home",
+                params: { newAuthorized: 1 },
+            });
         }
-    }
-})
+    },
+});
 </script>
 
 <style lang="scss" scoped>
-    div.authorize{
-        text-align: center;
+div.authorize {
+    text-align: center;
 
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-        h2{
-            margin: 0;
-            margin-bottom: 1em;
-        }
+    h2 {
+        margin: 0;
+        margin-bottom: 1em;
     }
+}
 </style>

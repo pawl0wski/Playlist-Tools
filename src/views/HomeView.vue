@@ -1,72 +1,85 @@
 <template>
-  <div class="home">
-    <Header></Header>
-    <h2>What you can do with <span class="main-color">Spotify Tools</span>?</h2>
-    <div class="tools-wrapper">
-      <ToolInfo title="Some tool" description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem " image="https://www.w3schools.com/css/paris.jpg" ></ToolInfo>
-      <ToolInfo title="Some tool" description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem " image="https://www.w3schools.com/css/paris.jpg"></ToolInfo>
-      <ToolInfo title="Some tool" description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem " image="https://www.w3schools.com/css/paris.jpg" ></ToolInfo>
+    <div class="home">
+        <Header></Header>
+        <h2>
+            What you can do with <span class="main-color">Spotify Tools</span>?
+        </h2>
+        <div class="tools-wrapper">
+            <ToolInfo
+                title="Some tool"
+                description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem "
+                image="https://www.w3schools.com/css/paris.jpg"
+            ></ToolInfo>
+            <ToolInfo
+                title="Some tool"
+                description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem "
+                image="https://www.w3schools.com/css/paris.jpg"
+            ></ToolInfo>
+            <ToolInfo
+                title="Some tool"
+                description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem "
+                image="https://www.w3schools.com/css/paris.jpg"
+            ></ToolInfo>
+        </div>
     </div>
-  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 import Header from "@/components/HomeView/Header.vue";
 import ToolInfo from "@/components/HomeView/ToolInfo.vue";
 
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 export default defineComponent({
-  name: 'Home',
-  props: {
-      // Set this after new authorization. If it is true, Home will show info about successful login.
-      newAuthorized: {
-          type: Boolean,
-          default: false,
-      }
+    name: "Home",
+    props: {
+        // Set this after new authorization. If it is true, Home will show info about successful login.
+        newAuthorized: {
+            type: Boolean,
+            default: false,
+        },
     },
-  components: {
-    Header,
-    ToolInfo,
-  },
-  mounted() {
-    if (this.newAuthorized) {
-      this.$emit("newAuthorized")
-      Swal.mixin({
-        toast: true,
-        position: "bottom-end",
-        timer: 5000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-        background: "#08262D",
-        color: "white",
-      }).fire({
-        icon: "success",
-        title: "Signed in."
-      })
-    }
-  }
+    components: {
+        Header,
+        ToolInfo,
+    },
+    mounted() {
+        if (this.newAuthorized) {
+            this.$emit("newAuthorized");
+            Swal.mixin({
+                toast: true,
+                position: "bottom-end",
+                timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#08262D",
+                color: "white",
+            }).fire({
+                icon: "success",
+                title: "Signed in.",
+            });
+        }
+    },
 });
 </script>
 
 <style lang="scss" scoped>
-  div.home{
+div.home {
     text-align: center;
 
     h2 {
-      &:first-of-type {
-        margin: 2em 0px;
-      }
+        &:first-of-type {
+            margin: 2em 0px;
+        }
     }
 
     div.tools-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      gap: 5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5em;
     }
-
-  }
+}
 </style>
