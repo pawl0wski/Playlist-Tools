@@ -225,8 +225,8 @@ export class SpotifyApi {
             return {
                 id: serializedSong["id"],
                 songName: serializedSong["name"],
-                releaseDate: new Date(serializedSong["release_date"]),
-                duration: serializedSong["duration"],
+                releaseDate: new Date(serializedSong["album"]["release_date"]),
+                duration: serializedSong["duration_ms"],
                 explicit: serializedSong["explicit"],
                 isLocal: serializedSong["is_local"],
                 markets: serializedSong["available_markets"],
