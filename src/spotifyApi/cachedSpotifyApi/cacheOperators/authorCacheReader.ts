@@ -1,4 +1,4 @@
-import { Author } from "../interfaces/author";
+import { Author } from "../../interfaces/author";
 import { CacheReader } from "./abstracts/cacheReader";
 
 export class AuthorCacheReader extends CacheReader {

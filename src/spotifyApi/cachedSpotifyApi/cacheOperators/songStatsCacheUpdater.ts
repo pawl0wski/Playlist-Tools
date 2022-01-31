@@ -1,4 +1,4 @@
-import { SongStats } from "../interfaces/songstats";
+import { SongStats } from "../../interfaces/songstats";
 import { CacheUpdater } from "./abstracts/cacheUpdater";
 
 export class SongStatsCacheUpdater extends CacheUpdater {

@@ -1,4 +1,4 @@
-import { SongStats } from "../interfaces/songstats";
+import { SongStats } from "../../interfaces/songstats";
 import { CacheReader } from "./abstracts/cacheReader";
 
 export class SongStatsCacheReader extends CacheReader {
