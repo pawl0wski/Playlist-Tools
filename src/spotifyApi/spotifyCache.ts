@@ -16,17 +16,25 @@ export class SpotifyCache {
     private authorUpdater: AuthorCacheUpdater;
     private authorReader: AuthorCacheReader;
 
-    constructor() {
-        const songKey = "songsCache";
-        const songStatsKey = "songsStatsCache";
-        const authorStatsKey = "authorStatsKey";
+    private songKey: string;
+    private songStatsKey: string;
+    private authorStatsKey: string;
+    private usernameKey: string;
+    private avatarUrlKey: string;
 
-        this.songReader = new SongCacheReader(songKey);
-        this.songUpdater = new SongCacheUpdater(songKey);
-        this.songStatsReader = new SongStatsCacheReader(songStatsKey);
-        this.songStatsUpdate = new SongStatsCacheUpdater(songStatsKey);
-        this.authorReader = new AuthorCacheReader(authorStatsKey);
-        this.authorUpdater = new AuthorCacheUpdater(authorStatsKey);
+    constructor() {
+        this.songKey = "songsCache";
+        this.songStatsKey = "songsStatsCache";
+        this.authorStatsKey = "authorStatsKey";
+        this.usernameKey = "avatarUrlCache";
+        this.avatarUrlKey = "usernameCache";
+
+        this.songReader = new SongCacheReader(this.songKey);
+        this.songUpdater = new SongCacheUpdater(this.songKey);
+        this.songStatsReader = new SongStatsCacheReader(this.songStatsKey);
+        this.songStatsUpdate = new SongStatsCacheUpdater(this.songStatsKey);
+        this.authorReader = new AuthorCacheReader(this.authorStatsKey);
+        this.authorUpdater = new AuthorCacheUpdater(this.authorStatsKey);
     }
 
     getSongFromCache(id: string): Song | void {
@@ -51,5 +59,23 @@ export class SpotifyCache {
 
     addAuthorToCache(author: Author) {
         return this.authorUpdater.update(author);
+    }
+
+    addUsernameToCache(username: string): string {
+        localStorage.setItem(this.usernameKey, username);
+        return username;
+    }
+
+    getUsernameFromCache(): string | null {
+        return localStorage.getItem(this.usernameKey);
+    }
+
+    addAvatarUrlToCache(avatarUrl: string): string {
+        localStorage.setItem(this.avatarUrlKey, avatarUrl);
+        return avatarUrl;
+    }
+
+    getAvatarUrlFromCache(): string | null {
+        return localStorage.getItem(this.avatarUrlKey);
     }
 }
