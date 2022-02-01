@@ -1,5 +1,5 @@
 <template>
-    <UserHeader :avatarUrl="avatarUrl" :username="username" />
+    <UserHeader />
     <div class="playlist-selector">
         <h2>Select <span class="main-color">playlist</span> to copy.</h2>
         <PlaylistPicker
@@ -28,13 +28,9 @@ export default defineComponent({
     data(): {
         playlistToCopy?: Playlist;
         newPlaylistName?: string;
-        username: string;
-        avatarUrl: string;
         refreshCaller: boolean;
     } {
         return {
-            username: "",
-            avatarUrl: "",
             playlistToCopy: undefined,
             newPlaylistName: undefined,
             refreshCaller: false,
@@ -95,12 +91,6 @@ export default defineComponent({
                 allowOutsideClick: () => !Swal.isLoading,
             });
         },
-    },
-    async created() {
-        let spotify = SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
-
-        this.$data.username = await spotify.getUsername();
-        this.$data.avatarUrl = await spotify.getAvatarUrl();
     },
 });
 </script>

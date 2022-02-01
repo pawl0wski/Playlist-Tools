@@ -11,12 +11,20 @@
 </template>
 
 <script lang="ts">
+import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    props: {
-        username: String,
-        avatarUrl: String,
+    data(): { username: string; avatarUrl: string } {
+        return {
+            username: "",
+            avatarUrl: "",
+        };
+    },
+    async beforeCreate() {
+        let spotify = SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
+        this.$data.username = await spotify.getUsername();
+        this.$data.avatarUrl = await spotify.getAvatarUrl();
     },
 });
 </script>

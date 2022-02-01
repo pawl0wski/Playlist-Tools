@@ -1,5 +1,5 @@
 <template>
-    <UserHeader :avatarUrl="avatarUrl" :username="username" />
+    <UserHeader />
     <h2>Select <span class="main-color">tool</span> to continue.</h2>
     <div class="tools-wrapper">
         <Tool
@@ -36,24 +36,11 @@
 import { defineComponent } from "vue";
 import UserHeader from "@/components/UserHeader.vue";
 import Tool from "@/components/ToolsView/Tool.vue";
-import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
 
 export default defineComponent({
     components: {
         UserHeader,
         Tool,
-    },
-    data() {
-        return {
-            username: "",
-            avatarUrl: "",
-        };
-    },
-    // Check if user is authenticated if not redirect his to HomeView
-    async beforeCreate() {
-        let spotify = SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
-        this.$data.username = await spotify.getUsername();
-        this.$data.avatarUrl = await spotify.getAvatarUrl();
     },
 });
 </script>
