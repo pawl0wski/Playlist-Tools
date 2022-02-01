@@ -2,7 +2,6 @@ import axios from "axios";
 import { SpotifyAuthentication } from "./spotifyAuthentication";
 import { Playlist } from "./interfaces/playlist";
 import { Song } from "./interfaces/song";
-import { SongStatsCacheReader } from "./cachedSpotifyApi/cacheOperators/songStatsCacheReader";
 
 export class SpotifyApi {
     protected static instance: SpotifyApi | undefined;
@@ -72,6 +71,18 @@ export class SpotifyApi {
         ).data;
 
         return data["display_name"];
+    }
+
+    public async getMeId(): Promise<string> {
+        let token = this.spotifyAuthentication.getTokenOrRenew()!;
+
+        let data = (
+            await axios.get("https://api.spotify.com/v1/me", {
+                headers: this.getAuthenticationHeader(token),
+            })
+        ).data;
+
+        return data["id"];
     }
 
     public async getAvatarUrl(): Promise<string> {
@@ -334,5 +345,30 @@ export class SpotifyApi {
             }
             return songs;
         }
+    }
+
+    public async createNewPlaylist(
+        name: string,
+        description: string = "",
+        makePublic: boolean = true
+    ): Promise<string> {
+        let authToken = this.spotifyAuthentication.getTokenOrRenew()!;
+        let authorizationHeader = this.getAuthenticationHeader(authToken);
+        let meId = await this.getMeId();
+
+        let newPlaylistData = (
+            await axios.post(
+                `https://api.spotify.com/v1/users/${meId}/playlists`,
+                {
+                    name: name,
+                    description: description,
+                    public: makePublic,
+                },
+                {
+                    headers: authorizationHeader,
+                }
+            )
+        ).data;
+        return newPlaylistData.id;
     }
 }

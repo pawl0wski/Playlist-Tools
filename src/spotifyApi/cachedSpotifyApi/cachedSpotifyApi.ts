@@ -43,6 +43,17 @@ export class CachedSpotifyApi extends SpotifyApi {
         }
     }
 
+    async getMeId(): Promise<string> {
+        let cachedMeId = this.spotifyCache.getMeIdFromCache();
+        if (!cachedMeId) {
+            let meIdFromApi = await super.getMeId();
+            this.spotifyCache.addMeIdToCache(meIdFromApi);
+            return meIdFromApi;
+        } else {
+            return cachedMeId;
+        }
+    }
+
     async getAvatarUrl(): Promise<string> {
         let cachedAvatarUrl = this.spotifyCache.getAvatarUrlFromCache();
         if (!cachedAvatarUrl) {

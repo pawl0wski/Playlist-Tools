@@ -12,18 +12,18 @@ export class SpotifyCache {
     private authorUpdater: AuthorCacheUpdater;
     private authorReader: AuthorCacheReader;
 
-    private songKey: string;
     private songStatsKey: string;
     private authorStatsKey: string;
     private usernameKey: string;
     private avatarUrlKey: string;
+    private meIdKey: string;
 
     constructor() {
-        this.songKey = "songsCache";
         this.songStatsKey = "songsStatsCache";
-        this.authorStatsKey = "authorStatsKey";
-        this.usernameKey = "avatarUrlCache";
-        this.avatarUrlKey = "usernameCache";
+        this.authorStatsKey = "authorStatsCache";
+        this.usernameKey = "usernameCache";
+        this.avatarUrlKey = "avatarUrlCache";
+        this.meIdKey = "meIdCache";
         this.songStatsReader = new SongStatsCacheReader(this.songStatsKey);
         this.songStatsUpdate = new SongStatsCacheUpdater(this.songStatsKey);
         this.authorReader = new AuthorCacheReader(this.authorStatsKey);
@@ -64,8 +64,18 @@ export class SpotifyCache {
         return localStorage.getItem(this.avatarUrlKey);
     }
 
+    addMeIdToCache(meId: string): string {
+        localStorage.setItem(this.meIdKey, meId);
+        return meId;
+    }
+
+    getMeIdFromCache(): string | null {
+        return localStorage.getItem(this.meIdKey);
+    }
+
     deleteUserCache() {
         localStorage.removeItem(this.usernameKey);
         localStorage.removeItem(this.avatarUrlKey);
+        localStorage.removeItem(this.meIdKey);
     }
 }
