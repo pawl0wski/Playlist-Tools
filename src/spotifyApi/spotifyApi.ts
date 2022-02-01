@@ -162,7 +162,9 @@ export class SpotifyApi {
     }
 
     public async getSongsFromPlaylist(
-        playlistId: string
+        playlistId: string,
+        attachStats: boolean = true,
+        attachAuthors: boolean = true
     ): Promise<Array<Song>> {
         let authToken = this.spotifyAuthentication.getTokenOrRenew()!;
         let authorizationHeader = this.getAuthenticationHeader(authToken);
@@ -236,11 +238,16 @@ export class SpotifyApi {
             };
         });
 
-        songs = await this.attachSongStatsToSongs(songs);
-        songs = await this.attachAuthorToSongsWithProvidedAuthorsId(
-            songs,
-            authorsId
-        );
+        if (attachStats) {
+            songs = await this.attachSongStatsToSongs(songs);
+        }
+        if (attachAuthors) {
+            songs = await this.attachAuthorToSongsWithProvidedAuthorsId(
+                songs,
+                authorsId
+            );
+        }
+
         return songs;
     }
 

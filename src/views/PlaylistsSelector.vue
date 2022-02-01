@@ -60,8 +60,6 @@ export default defineComponent({
         const onlyMyPlaylists = !!this.$data.onlyMyPlaylists;
         this.$data.playlists = await spotify.getMyPlaylists(onlyMyPlaylists);
         this.$data.fetching = false;
-
-        console.log(spotify.getSongsFromPlaylist("2lWVPwqiQgEuOrtGhdyHYJ"));
     },
 });
 </script>
