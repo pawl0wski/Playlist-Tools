@@ -6,9 +6,10 @@ export class SongStatsCacheReader extends CacheReader {
         [key: string]: string;
     }): SongStats {
         return {
+            id: object["id"],
             acousticness: parseInt(object["acousticness"]),
             danceability: parseInt(object["danceability"]),
-            energy: parseInt(object["acousticnenergyess"]),
+            energy: parseInt(object["energy"]),
             instrumentalness: parseInt(object["instrumentalness"]),
             liveness: parseInt(object["liveness"]),
             loudness: parseInt(object["loudness"]),

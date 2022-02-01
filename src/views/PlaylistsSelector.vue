@@ -50,7 +50,7 @@ export default defineComponent({
         },
     },
     async beforeCreate() {
-        let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+        let spotify = SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
         // Get username and avatar
         this.$data.username = await spotify.getUsername();
         this.$data.avatarUrl = await spotify.getAvatarUrl();

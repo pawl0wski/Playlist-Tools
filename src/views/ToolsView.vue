@@ -53,7 +53,7 @@ export default defineComponent({
     },
     // Check if user is authenticated if not redirect his to HomeView
     async beforeCreate() {
-        let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+        let spotify = SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
         if (!spotify.isAuthorized()) {
             Swal.mixin({
                 toast: true,

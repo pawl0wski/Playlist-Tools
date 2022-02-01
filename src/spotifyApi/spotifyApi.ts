@@ -251,7 +251,7 @@ export class SpotifyApi {
         return songs;
     }
 
-    private async attachSongStatsToSongs(
+    protected async attachSongStatsToSongs(
         songs: Array<Song>
     ): Promise<Array<Song>> {
         let i,
@@ -279,6 +279,7 @@ export class SpotifyApi {
             songsStatsData.forEach((songStat: any, i: number) => {
                 if (!!songStat) {
                     songsChunk[i].songStats = {
+                        id: songsChunk[i].id,
                         acousticness: songStat["acousticness"],
                         danceability: songStat["danceability"],
                         energy: songStat["energy"],
@@ -295,7 +296,7 @@ export class SpotifyApi {
         return songs;
     }
 
-    private async attachAuthorToSongsWithProvidedAuthorsId(
+    protected async attachAuthorToSongsWithProvidedAuthorsId(
         songs: Array<Song>,
         authorsId: Array<string>
     ) {
@@ -326,7 +327,7 @@ export class SpotifyApi {
                         id: authorData["id"],
                         name: authorData["name"],
                         genres: authorData["genres"],
-                        followers: authorData["followers"],
+                        followers: authorData["followers"]["total"],
                         popularity: authorData["popularity"],
                     };
                 });

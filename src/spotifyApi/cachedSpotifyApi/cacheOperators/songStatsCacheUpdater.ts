@@ -6,6 +6,7 @@ export class SongStatsCacheUpdater extends CacheUpdater {
         [key: string]: string;
     } {
         return {
+            id: item.id,
             acousticness: item.acousticness.toString(),
             danceability: item.danceability.toString(),
             energy: item.energy.toString(),

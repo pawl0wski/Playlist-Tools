@@ -55,7 +55,8 @@ export default defineComponent({
     },
     methods: {
         logOut() {
-            let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+            let spotify =
+                SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
             spotify.logOut();
             this.$router.go(0);
         },
@@ -63,7 +64,8 @@ export default defineComponent({
             this.updateSpotifyData();
         },
         updateSpotifyData() {
-            let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+            let spotify =
+                SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
             let isAuthorized = spotify.isAuthorized();
             if (isAuthorized) {
                 this.$data.isAuthorized = isAuthorized;

@@ -18,7 +18,8 @@ export default defineComponent({
         let authorizationToken = urlParams.get("access_token");
         let expiresIn = urlParams.get("expires_in");
         if (expiresIn && authorizationToken) {
-            let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+            let spotify =
+                SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
             spotify.setAuthorizationToken(
                 authorizationToken,
                 parseInt(expiresIn)

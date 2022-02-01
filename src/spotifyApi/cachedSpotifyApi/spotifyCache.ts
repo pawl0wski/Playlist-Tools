@@ -30,7 +30,7 @@ export class SpotifyCache {
         this.authorUpdater = new AuthorCacheUpdater(this.authorStatsKey);
     }
 
-    getSongStatsFromCache(id: string): SongStats | void {
+    getSongStatsFromCache(id: string): SongStats | null {
         return this.songStatsReader.read(id);
     }
 
@@ -38,7 +38,7 @@ export class SpotifyCache {
         return this.songStatsUpdate.update(songStats);
     }
 
-    getAuthorFromCache(id: string): Author | void {
+    getAuthorFromCache(id: string): Author | null {
         return this.authorReader.read(id);
     }
 
@@ -62,5 +62,10 @@ export class SpotifyCache {
 
     getAvatarUrlFromCache(): string | null {
         return localStorage.getItem(this.avatarUrlKey);
+    }
+
+    deleteUserCache() {
+        localStorage.removeItem(this.usernameKey);
+        localStorage.removeItem(this.avatarUrlKey);
     }
 }

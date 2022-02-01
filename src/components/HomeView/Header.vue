@@ -17,7 +17,8 @@ import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
 export default {
     computed: {
         showLoginButton() {
-            let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+            let spotify =
+                SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
             return spotify.isAuthorized();
         },
     },

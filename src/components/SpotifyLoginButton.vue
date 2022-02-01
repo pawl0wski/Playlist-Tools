@@ -10,7 +10,8 @@ import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
 export default {
     methods: {
         loginToSpotify() {
-            let spotify = SpotifyApiFactory.createSpotifyApiWithDefaultApp();
+            let spotify =
+                SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
             spotify.logIn();
         },
     },
