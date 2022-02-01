@@ -45,4 +45,8 @@ export class CopyTool extends AbstractTool {
             this.playlistSongs!
         );
     }
+
+    getNewPlaylist(): Playlist {
+        return this.newPlaylist!;
+    }
 }
