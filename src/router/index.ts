@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/HomeView.vue";
 import Authorize from "../views/AuthorizeView.vue";
 import Tools from "../views/ToolsView.vue";
-import PlaylistsSelector from "../views/PlaylistsSelector.vue";
+import CopyPlaylistView from "../views/ToolView/CopyPlaylistView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -21,13 +21,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "Tools",
         component: Tools,
     },
+    // Tools
     {
-        path: "/tools/playlists",
-        name: "PlaylistsSelector",
-        component: PlaylistsSelector,
-        props: {
-            onlyMyPlaylists: false,
-        },
+        path: "/tools/copy",
+        name: "CopyPlaylistTool",
+        component: CopyPlaylistView,
     },
 ];
 

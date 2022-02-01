@@ -40,4 +40,17 @@ div#view {
 span.main-color {
     color: $main-color;
 }
+
+input {
+    height: 3em;
+    width: 30em;
+    background-color: $content-color;
+    border-style: none;
+    border-color: $main-color-darker !important;
+    border-width: 2px !important;
+    border-radius: $border-radius !important;
+
+    padding: 1em;
+    font-size: medium;
+}
 </style>

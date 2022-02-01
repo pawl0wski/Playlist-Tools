@@ -1,7 +1,10 @@
 <template>
     <div class="playlist">
         <div
-            :style="{ backgroundImage: 'url(' + imageUrl + ')' }"
+            :style="{
+                backgroundImage:
+                    imageUrl !== undefined ? 'url(' + imageUrl + ')' : '',
+            }"
             class="playlist-cover"
         ></div>
         <h3 class="playlist-title">{{ title }}</h3>
@@ -51,6 +54,7 @@ div.playlist {
 
         background-size: cover;
         background-position: center;
+        background-image: url("../../assets/cover.jpg");
     }
 
     p.playlist-description {

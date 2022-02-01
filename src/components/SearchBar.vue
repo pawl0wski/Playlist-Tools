@@ -32,16 +32,5 @@ div.search-bar {
     align-items: center;
     justify-content: center;
     margin: 0px 2em;
-
-    input {
-        height: 3em;
-        width: 30em;
-        background-color: $content-color;
-        border-style: none;
-        border-radius: $border-radius;
-
-        padding: 1em;
-        font-size: medium;
-    }
 }
 </style>
