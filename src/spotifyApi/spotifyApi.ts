@@ -168,7 +168,10 @@ export class SpotifyApi {
                 id: playlistData["id"],
                 name: playlistData["name"],
                 description: playlistData["description"],
-                imageUrl: playlistData["images"][0]["url"],
+                imageUrl:
+                    playlistData["images"].length === 0
+                        ? undefined
+                        : playlistData["images"][0]["url"],
             };
         });
         return playlists;
@@ -375,11 +378,13 @@ export class SpotifyApi {
             id: newPlaylistData.id,
             name: name,
             description: description,
-            imageUrl: "",
+            imageUrl: undefined,
         };
     }
 
     public async addSongsToPlaylist(playlist: Playlist, songs: Array<Song>) {
+        let authToken = this.spotifyAuthentication.getTokenOrRenew()!;
+        let authorizationHeader = this.getAuthenticationHeader(authToken);
         let i,
             j,
             songsChunk: Array<Song>,
@@ -390,11 +395,12 @@ export class SpotifyApi {
             await axios.post(
                 `https://api.spotify.com/v1/playlists/${playlist.id}/tracks`,
                 {
-                    uris: songs
-                        .map((e: Song) => {
-                            return `spotify:track:${e.id}`;
-                        })
-                        .join(","),
+                    uris: songsChunk.map((e: Song) => {
+                        return `spotify:track:${e.id}`;
+                    }),
+                },
+                {
+                    headers: authorizationHeader,
                 }
             );
         }
