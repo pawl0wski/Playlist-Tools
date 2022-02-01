@@ -153,12 +153,14 @@ export class SpotifyApi {
         }
 
         // If onlyCreatedByMe is set filter playlists
-        let username = await this.getUsername();
-        playlists = playlists.filter(
-            (playlistsData: { [key: string]: any }) => {
-                return playlistsData["owner"]["display_name"] == username;
-            }
-        );
+        if (onlyCreatedByMe) {
+            let username = await this.getUsername();
+            playlists = playlists.filter(
+                (playlistsData: { [key: string]: any }) => {
+                    return playlistsData["owner"]["display_name"] == username;
+                }
+            );
+        }
 
         // Change structure for interface
         playlists = playlists.map((playlistData: { [key: string]: any }) => {
@@ -351,7 +353,7 @@ export class SpotifyApi {
         name: string,
         description: string = "",
         makePublic: boolean = true
-    ): Promise<string> {
+    ): Promise<Playlist> {
         let authToken = this.spotifyAuthentication.getTokenOrRenew()!;
         let authorizationHeader = this.getAuthenticationHeader(authToken);
         let meId = await this.getMeId();
@@ -369,6 +371,32 @@ export class SpotifyApi {
                 }
             )
         ).data;
-        return newPlaylistData.id;
+        return {
+            id: newPlaylistData.id,
+            name: name,
+            description: description,
+            imageUrl: "",
+        };
+    }
+
+    public async addSongsToPlaylist(playlist: Playlist, songs: Array<Song>) {
+        let i,
+            j,
+            songsChunk: Array<Song>,
+            chunk = 100;
+        for (i = 0, j = songs.length; i < j; i += chunk) {
+            songsChunk = songs.slice(i, i + chunk);
+
+            await axios.post(
+                `https://api.spotify.com/v1/playlists/${playlist.id}/tracks`,
+                {
+                    uris: songs
+                        .map((e: Song) => {
+                            return `spotify:track:${e.id}`;
+                        })
+                        .join(","),
+                }
+            );
+        }
     }
 }
