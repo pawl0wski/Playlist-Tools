@@ -8,7 +8,8 @@ export interface Song {
     releaseDate: Date;
     duration: number;
     songStats: SongStats | undefined;
-    isLocal: boolean;
+    trackNumber: number;
+    previewUrl: string;
     explicit: boolean;
     markets: Array<string>;
 }

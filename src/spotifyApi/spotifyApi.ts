@@ -228,8 +228,9 @@ export class SpotifyApi {
                 releaseDate: new Date(serializedSong["album"]["release_date"]),
                 duration: serializedSong["duration_ms"],
                 explicit: serializedSong["explicit"],
-                isLocal: serializedSong["is_local"],
                 markets: serializedSong["available_markets"],
+                trackNumber: serializedSong["track_number"],
+                previewUrl: serializedSong["preview_url"],
                 author: undefined,
                 songStats: undefined,
             };
