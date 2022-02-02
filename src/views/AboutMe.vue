@@ -36,6 +36,15 @@
                 want, you can create a pull request.
             </p>
             <h2>My other <span class="main-color">projects</span>:</h2>
+            <div class="repositories-holder">
+                <Repository
+                    v-for="repo in repos"
+                    :key="repo"
+                    :title="repo.title"
+                    :description="repo.description"
+                    :repoUrl="repo.url"
+                />
+            </div>
         </div>
     </div>
 </template>
@@ -45,16 +54,18 @@ import { defineComponent } from "vue";
 import axios from "axios";
 
 import Spinner from "@/components/Spinner.vue";
+import Repository from "@/components/AboutMe/Repository.vue";
 
 export default defineComponent({
     components: {
         Spinner,
+        Repository,
     },
     data(): {
         authorUsername: string;
         authorBio: string;
         authorAvatar: string;
-        repos: { title: string; description: string }[];
+        repos: { title: string; description: string; url: string }[];
         isLoading: boolean;
     } {
         return {
@@ -68,6 +79,7 @@ export default defineComponent({
     async created() {
         this.$data.isLoading = true;
 
+        // Get info about author
         let authorData = (
             await axios.get("https://api.github.com/users/jeboczek")
         ).data;
@@ -75,6 +87,21 @@ export default defineComponent({
         this.$data.authorUsername = authorData.name;
         this.$data.authorBio = authorData.bio;
         this.$data.authorAvatar = authorData.avatar_url;
+
+        // Get author repositories
+        let authorRepositoriesData = (
+            await axios.get(
+                "https://api.github.com/users/jeboczek/repos?per_page=100"
+            )
+        ).data;
+
+        authorRepositoriesData.forEach((e: { [key: string]: any }) => {
+            this.$data.repos.push({
+                title: e.name,
+                description: e.description,
+                url: e.svn_url,
+            });
+        });
 
         this.$data.isLoading = false;
     },
@@ -116,6 +143,15 @@ div.aboutme-wrapper {
 
         h2 {
             margin-top: 2em;
+        }
+
+        div.repositories-holder {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 2em;
+            justify-content: flex-start;
+            align-items: center;
         }
     }
 
