@@ -15,7 +15,13 @@
         <h2 v-if="!loading && isAnyDuplication">
             <span class="main-color">Duplications</span> to remove.
         </h2>
-        <button v-if="!loading && isAnyDuplication">Remove duplications</button>
+        <button
+            v-if="!loading && isAnyDuplication"
+            :disabled="buttonDisabled ? 1 : 0"
+            @click="deleteDuplicationsClicked"
+        >
+            Remove duplications
+        </button>
         <div class="spinner-wrapper" v-if="loading">
             <Spinner />
             <p>Getting songs from Spotify...</p>
@@ -65,12 +71,14 @@ export default defineComponent({
         duplicationRemoverTool?: DuplicationRemoverTool;
         loading: boolean;
         isAnyDuplication: boolean;
+        buttonDisabled: boolean;
     } {
         return {
             playlistToPurge: undefined,
             duplicationRemoverTool: undefined,
             loading: false,
             isAnyDuplication: false,
+            buttonDisabled: false,
         };
     },
     methods: {
@@ -87,6 +95,12 @@ export default defineComponent({
             this.$data.isAnyDuplication =
                 !!this.$data.duplicationRemoverTool.getDuplications().length;
             this.$data.loading = false;
+        },
+        async deleteDuplicationsClicked() {
+            this.$data.buttonDisabled = true;
+            await this.$data.duplicationRemoverTool?.doWork();
+            await this.onPlaylistSelect(this.$data.playlistToPurge!);
+            this.$data.buttonDisabled = false;
         },
     },
     computed: {

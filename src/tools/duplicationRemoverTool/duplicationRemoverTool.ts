@@ -14,7 +14,13 @@ export class DuplicationRemoverTool extends AbstractTool {
         this.duplicatedSongs = [];
     }
 
-    doWork() {}
+    async doWork() {
+        if (!this.playlistSongs) {
+            await this.getSongsFromPlaylist();
+        }
+        this.getDuplications();
+        await this.removeDuplications();
+    }
 
     async getSongsFromPlaylist(): Promise<Array<Song>> {
         let songsFromPlaylist = await this.spotifyApi.getSongsFromPlaylist(
@@ -32,7 +38,6 @@ export class DuplicationRemoverTool extends AbstractTool {
     }> {
         if (this.duplicatedSongs.length == 0) {
             let songCount: { [key: string]: number } = {};
-            console.log(this.playlistSongs?.length);
             this.playlistSongs!.forEach((e: Song) => {
                 if (Object.keys(songCount).includes(e.id)) {
                     songCount[e.id] += 1;
@@ -52,5 +57,22 @@ export class DuplicationRemoverTool extends AbstractTool {
             }
         }
         return this.duplicatedSongs;
+    }
+
+    async removeDuplications() {
+        let songsToRemove: Array<Song> = [];
+
+        this.duplicatedSongs.forEach(
+            (e: { song: Song; howMuchDuplications: number }) => {
+                songsToRemove.push(e.song);
+            }
+        );
+
+        await this.spotifyApi.removeSongsFromPlaylist(
+            this.playlist,
+            songsToRemove
+        );
+
+        await this.spotifyApi.addSongsToPlaylist(this.playlist, songsToRemove);
     }
 }

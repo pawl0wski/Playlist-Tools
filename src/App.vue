@@ -68,5 +68,12 @@ button {
     &:hover {
         background-color: $main-color;
     }
+
+    &:disabled {
+        background-color: $content-color;
+
+        color: $paragraph-color;
+        cursor: wait;
+    }
 }
 </style>

@@ -409,4 +409,30 @@ export class SpotifyApi {
             );
         }
     }
+
+    public async removeSongsFromPlaylist(
+        playlist: Playlist,
+        songs: Array<Song>
+    ) {
+        let authToken = this.spotifyAuthentication.getTokenOrRenew();
+        let authorizationHeader = this.getAuthenticationHeader(authToken!);
+        let i,
+            j,
+            songsChunk: Array<Song>,
+            chunk = 100;
+        for (i = 0, j = songs.length; i < j; i += chunk) {
+            songsChunk = songs.slice(i, i + chunk);
+            await axios.delete(
+                `https://api.spotify.com/v1/playlists/${playlist.id}/tracks`,
+                {
+                    data: {
+                        tracks: songsChunk.map((e: Song) => {
+                            return { uri: `spotify:track:${e.id}` };
+                        }),
+                    },
+                    headers: authorizationHeader,
+                }
+            );
+        }
+    }
 }
