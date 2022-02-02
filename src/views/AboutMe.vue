@@ -17,6 +17,26 @@
                 </p>
             </div>
         </div>
+        <div class="project-info">
+            <h2>
+                Why I created <span class="main-color">Spotify Tools</span>?
+            </h2>
+            <p>
+                I really wanted to test my skills in the Vue framework so I
+                decided to make an application that would allow me to mess up my
+                playlists. This project is open source you can see it
+                <a href="https://github.com/Jeboczek/Spotify-Tools">here</a>.
+            </p>
+            <h2>
+                Hey, I found a <span class="main-color">bug</span> where can i
+                report it to you?
+            </h2>
+            <p>
+                You can report all bugs in the issue panel on GitHub. If you
+                want, you can create a pull request.
+            </p>
+            <h2>My other <span class="main-color">projects</span>:</h2>
+        </div>
     </div>
 </template>
 
@@ -83,9 +103,26 @@ div.aboutme-wrapper {
 
     margin-top: 3em;
 
+    div.project-info {
+        max-width: 900px;
+        width: 80%;
+
+        text-align: left;
+
+        p {
+            opacity: 0.6;
+            line-height: 1.8;
+        }
+
+        h2 {
+            margin-top: 2em;
+        }
+    }
+
     div.author-info {
         max-width: 900px;
         width: 80%;
+        margin-bottom: 1em;
 
         border-radius: $border-radius;
         background-color: $content-color;
