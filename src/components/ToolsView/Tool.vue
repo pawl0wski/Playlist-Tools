@@ -60,7 +60,7 @@ div.toolview-tool {
     }
 
     p {
-        opacity: 0.66;
+        color: $paragraph-color;
     }
 
     &:hover {

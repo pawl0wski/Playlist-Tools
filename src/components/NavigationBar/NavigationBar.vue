@@ -114,6 +114,12 @@ nav {
             margin: 0;
         }
     }
+
+    &::after {
+        content: "";
+        display: block;
+        height: 60px;
+    }
 }
 
 div.burger-menu {

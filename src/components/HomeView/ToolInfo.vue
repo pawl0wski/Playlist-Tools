@@ -101,7 +101,7 @@ div.tool-info {
         align-items: center;
 
         p {
-            opacity: 0.66;
+            color: $paragraph-color;
             width: 50%;
             min-width: 200px;
         }

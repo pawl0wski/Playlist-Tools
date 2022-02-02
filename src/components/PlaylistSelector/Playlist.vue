@@ -58,7 +58,7 @@ div.playlist {
     }
 
     p.playlist-description {
-        opacity: 0.66;
+        color: $paragraph-color;
         margin: 0.5em 0;
     }
 
