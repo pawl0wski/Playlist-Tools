@@ -2,31 +2,24 @@
     <header>
         <div
             class="playlist-cover"
-            :style="{ backgroundImage: 'url(' + playlistImageUrl + ')' }"
+            :style="{ backgroundImage: 'url(' + playlist.imageUrl + ')' }"
         ></div>
         <div class="playlist-content">
-            <h2>{{ playlistName }}</h2>
-            <p>{{ playlistDescription }}</p>
+            <h2>{{ playlist.name }}</h2>
+            <p>{{ playlist.description }}</p>
         </div>
     </header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { Playlist } from "@/spotifyApi/interfaces/playlist";
 
 export default defineComponent({
     props: {
-        playlistName: {
-            type: String,
+        playlist: {
+            type: Object as () => Playlist,
             required: true,
-        },
-        playlistDescription: {
-            type: String,
-            required: true,
-        },
-        playlistImageUrl: {
-            type: String,
-            required: false,
         },
     },
 });

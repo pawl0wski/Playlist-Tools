@@ -4,6 +4,7 @@ import Authorize from "../views/AuthorizeView.vue";
 import AboutMe from "../views/AboutMe.vue";
 import Tools from "../views/ToolsView.vue";
 import CopyPlaylistView from "../views/ToolView/CopyPlaylistView.vue";
+import DuplicationRemoverView from "../views/ToolView/DuplicationRemoverView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -32,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "/tools/copy",
         name: "CopyPlaylistTool",
         component: CopyPlaylistView,
+    },
+    {
+        path: "/tools/duplication",
+        name: "DuplicationRemoverTool",
+        component: DuplicationRemoverView,
     },
 ];
 

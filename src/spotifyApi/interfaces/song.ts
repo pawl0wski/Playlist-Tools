@@ -10,6 +10,7 @@ export interface Song {
     songStats: SongStats | undefined;
     trackNumber: number;
     previewUrl: string;
+    imageUrl: string | undefined;
     explicit: boolean;
     markets: Array<string>;
 }

@@ -53,4 +53,20 @@ input {
     padding: 1em;
     font-size: medium;
 }
+
+button {
+    background-color: $main-color-darker;
+    border-radius: $border-radius;
+    border-style: none;
+    padding: 0.5em 2em;
+    font-size: medium;
+
+    transition: 0.2s background-color;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: $main-color;
+    }
+}
 </style>
