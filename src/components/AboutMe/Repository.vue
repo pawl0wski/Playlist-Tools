@@ -1,5 +1,5 @@
 <template>
-    <a :href="repoUrl">
+    <a :href="repoUrl" target="_blank">
         <div class="repo">
             <h3>{{ title }}</h3>
             <p>{{ description ? description : "No description provided" }}</p>
@@ -40,8 +40,14 @@ div.repo {
     padding: 0.5em 1.5em;
     border-radius: $border-radius;
 
+    transition: 0.2s background-color;
+
     h3 {
         color: $main-color;
+    }
+
+    &:hover {
+        background-color: lighten($color: $content-color, $amount: 1);
     }
 }
 </style>

@@ -137,7 +137,7 @@ div.aboutme-wrapper {
         text-align: left;
 
         p {
-            opacity: 0.6;
+            color: $paragraph-color;
             line-height: 1.8;
         }
 
