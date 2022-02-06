@@ -23,8 +23,8 @@
             </h2>
             <p>
                 I really wanted to test my skills in the Vue framework so I
-                decided to make an application that would allow me to mess up my
-                playlists. This project is open source you can see it
+                decided to make an application that would allow me to clean up
+                my playlists. This project is open source you can see it
                 <a href="https://github.com/Jeboczek/Spotify-Tools">here</a>.
             </p>
             <h2>
