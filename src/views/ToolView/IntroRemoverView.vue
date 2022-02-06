@@ -187,6 +187,7 @@ div.song-component {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: min(calc(600px + 2rem + 1rem), 98vw);
 
     gap: 1rem;
 }
