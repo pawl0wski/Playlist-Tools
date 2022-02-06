@@ -8,6 +8,10 @@
                 {{ additionalInfo ? "| " + additionalInfo : "" }}
             </p>
         </div>
+        <div class="song-play" @click="toggleSong">
+            <i v-if="!playing" class="fas fa-play"></i>
+            <i v-if="playing" class="fas fa-stop"></i>
+        </div>
     </div>
 </template>
 
@@ -17,6 +21,12 @@ import { Song } from "@/spotifyApi/interfaces/song";
 import { defineComponent } from "vue";
 
 export default defineComponent({
+    data(): { playing: boolean; audioObject: HTMLAudioElement | undefined } {
+        return {
+            playing: false,
+            audioObject: undefined,
+        };
+    },
     props: {
         song: {
             type: Object as () => Song,
@@ -39,6 +49,26 @@ export default defineComponent({
                 : minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
         },
     },
+    methods: {
+        toggleSong() {
+            if (this.$data.playing) {
+                this.$data.audioObject?.pause();
+                this.$data.playing = false;
+            } else {
+                this.$data.audioObject = new Audio(this.$props.song.previewUrl);
+                this.$data.audioObject.play();
+                this.$data.audioObject.addEventListener("ended", () => {
+                    this.$data.playing = false;
+                });
+                this.$data.playing = true;
+            }
+        },
+    },
+    beforeUnmount() {
+        if (this.$data.audioObject) {
+            this.$data.audioObject.pause();
+        }
+    },
 });
 </script>
 
@@ -55,25 +85,46 @@ div.song {
     background-color: $content-color;
 
     height: 70px;
-    max-width: 600px;
+    width: min(600px, 98vw);
 
     padding: 0.65em;
 
     img:first-child {
         border-radius: 5px;
+        height: 100%;
+        width: auto;
     }
 
     div.song-content {
         padding-left: 1em;
+        width: 100%;
         h1 {
             font-size: large;
             margin: 0;
+            text-overflow: ellipsis;
+            word-wrap: normal;
         }
 
         p {
             font-size: small;
             margin: 0;
             color: $paragraph-color;
+            overflow: hidden;
+            height: 1.5em;
+        }
+    }
+
+    div.song-play {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1rem;
+        cursor: pointer;
+
+        i {
+            color: $main-color;
+            font-size: 1.25rem;
         }
     }
 }
