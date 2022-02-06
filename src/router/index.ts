@@ -5,6 +5,7 @@ import AboutMe from "../views/AboutMe.vue";
 import Tools from "../views/ToolsView.vue";
 import CopyPlaylistView from "../views/ToolView/CopyPlaylistView.vue";
 import DuplicationRemoverView from "../views/ToolView/DuplicationRemoverView.vue";
+import IntroRemoverView from "../views/ToolView/IntroRemoverView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -38,6 +39,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "/tools/duplication",
         name: "DuplicationRemoverTool",
         component: DuplicationRemoverView,
+    },
+    {
+        path: "/tools/intro",
+        name: "IntroRemoverTool",
+        component: IntroRemoverView,
     },
 ];
 

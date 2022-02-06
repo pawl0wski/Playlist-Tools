@@ -13,4 +13,5 @@ export interface Song {
     imageUrl: string | undefined;
     explicit: boolean;
     markets: Array<string>;
+    popularity: number;
 }

@@ -249,6 +249,7 @@ export class SpotifyApi {
                 markets: serializedSong["available_markets"],
                 trackNumber: serializedSong["track_number"],
                 previewUrl: serializedSong["preview_url"],
+                popularity: serializedSong["popularity"],
                 imageUrl:
                     serializedSong["album"]["images"].length == 0
                         ? undefined

@@ -25,6 +25,7 @@ export default defineComponent({
         additionalInfo: {
             type: String,
             required: false,
+            default: "",
         },
     },
     computed: {

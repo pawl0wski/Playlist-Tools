@@ -14,16 +14,24 @@
                 description="Remove duplicated songs in your playlist."
             />
         </router-link>
+
         <Tool
             icon="fas fa-filter"
             title="Remove songs by <span class='main-color'>filter</span>."
             description="Remove duplicated songs in your playlist."
         />
-        <Tool
-            icon="fas fa-broom"
-            title="Remove <span class='main-color'>intros</span>."
-            description="Remove duplicated songs in your playlist."
-        />
+        <router-link
+            class="router-link"
+            :to="{
+                name: 'IntroRemoverTool',
+            }"
+        >
+            <Tool
+                icon="fas fa-broom"
+                title="Remove <span class='main-color'>intros</span>."
+                description="Remove duplicated songs in your playlist."
+            />
+        </router-link>
         <router-link
             class="router-link"
             :to="{
