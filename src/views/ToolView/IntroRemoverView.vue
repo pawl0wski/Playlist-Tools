@@ -27,11 +27,17 @@
             <p>Getting songs from Spotify...</p>
         </div>
         <div class="songs" v-if="!loading && isAnyIntros">
-            <SongComponent
-                :key="intro"
-                v-for="intro in getIntros"
-                :song="intro"
-            />
+            <div class="song-component" :key="intro" v-for="intro in getIntros">
+                <SongCheckbox
+                    :selectedOnStart="true"
+                    @selectChange="
+                        (newSelection) => {
+                            onSongSelectionChanged(intro, newSelection);
+                        }
+                    "
+                />
+                <SongComponent :song="intro" />
+            </div>
         </div>
         <div class="no-intros" v-if="!isAnyIntros && !loading">
             <i class="fas fa-trophy"></i>
@@ -48,6 +54,7 @@ import UserHeader from "@/components/UserHeader.vue";
 import PlaylistPicker from "@/components/PlaylistSelector/PlaylistPicker.vue";
 import PlaylistHeader from "@/components/PlaylistHeader.vue";
 import SongComponent from "@/components/Song/Song.vue";
+import SongCheckbox from "@/components/Song/SongCheckbox.vue";
 import Spinner from "@/components/Spinner.vue";
 
 import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
@@ -61,6 +68,7 @@ export default defineComponent({
         PlaylistPicker,
         PlaylistHeader,
         SongComponent,
+        SongCheckbox,
         Spinner,
     },
     data(): {
@@ -98,6 +106,13 @@ export default defineComponent({
             await this.$data.introRemoverTool?.doWork();
             await this.onPlaylistSelect(this.$data.playlistToPurge!);
             this.$data.buttonDisabled = false;
+        },
+        onSongSelectionChanged(song: Song, newSelection: boolean) {
+            if (newSelection) {
+                this.$data.introRemoverTool?.restoreExcludedSong(song);
+            } else {
+                this.$data.introRemoverTool?.addExcludedSong(song);
+            }
         },
     },
     computed: {
@@ -166,5 +181,13 @@ div.no-intros {
         color: $paragraph-color;
         margin: 0;
     }
+}
+
+div.song-component {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 1rem;
 }
 </style>

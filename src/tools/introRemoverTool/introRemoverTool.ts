@@ -51,10 +51,6 @@ export class IntroRemoverTool extends AbstractTool {
             return [];
         }
 
-        intros = intros.filter((e: Song) => {
-            return !this.excludedSongs.includes(e);
-        });
-
         return intros;
     }
 
@@ -71,6 +67,9 @@ export class IntroRemoverTool extends AbstractTool {
     }
 
     async removeSongs(intros: Array<Song>) {
+        intros = intros.filter((e: Song) => {
+            return !this.excludedSongs.includes(e);
+        });
         await this.spotifyApi.removeSongsFromPlaylist(this.playlist, intros);
     }
 }
