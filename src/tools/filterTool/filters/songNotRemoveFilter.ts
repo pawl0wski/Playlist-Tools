@@ -23,6 +23,6 @@ export class SongNotRemoveFilter extends Filter {
     }
 
     toString() {
-        return `dont remove song "${this.selectedSong.songName}"`;
+        return `don't remove song "${this.selectedSong.songName}"`;
     }
 }

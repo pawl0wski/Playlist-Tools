@@ -8,7 +8,7 @@
                 {{ additionalInfo ? "| " + additionalInfo : "" }}
             </p>
         </div>
-        <div class="song-play" @click="toggleSong">
+        <div class="song-play" @click="toggleSong" v-if="song.previewUrl">
             <i v-if="!playing" class="fas fa-play"></i>
             <i v-if="playing" class="fas fa-stop"></i>
         </div>
