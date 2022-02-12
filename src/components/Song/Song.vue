@@ -56,6 +56,7 @@ export default defineComponent({
                 this.$data.playing = false;
             } else {
                 this.$data.audioObject = new Audio(this.$props.song.previewUrl);
+                this.$data.audioObject.volume = 0.5;
                 this.$data.audioObject.play();
                 this.$data.audioObject.addEventListener("ended", () => {
                     this.$data.playing = false;

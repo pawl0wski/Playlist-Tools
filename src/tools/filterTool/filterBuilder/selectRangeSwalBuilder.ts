@@ -26,7 +26,7 @@ export class SelectRangeSwalBuilder extends SwalBuilder {
             <p>
             <label>
                 <span class="swal2-label">Select value from ${this.minValue} to ${this.maxValue}</span>
-                <input style="width: 80%" id="selected-value" type="range">
+                <input style="width: 80%" id="selected-value" min=${this.minValue} max=${this.maxValue} type="range">
             </label></p>
             <p>
             <label>
@@ -38,10 +38,11 @@ export class SelectRangeSwalBuilder extends SwalBuilder {
                     // @ts-ignore
                     value: document.getElementById("selected-value").value,
                     // @ts-ignore
-                    greater: document.getElementById("greater").value === "on",
+                    greater: document.getElementById("greater").checked,
                 };
             },
         });
+        console.log(swalResults.value);
         return swalResults.value!;
     }
 }

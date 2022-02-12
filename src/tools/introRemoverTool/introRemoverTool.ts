@@ -27,16 +27,17 @@ export class IntroRemoverTool extends AbstractTool {
         let intros: Array<Song> | undefined = [];
         intros = this.playlistSongs
             ?.map((e: Song) => {
+                if (
+                    this.introsHaveInName.some((introName: string) => {
+                        return e.songName.toLowerCase().includes(introName);
+                    })
+                ) {
+                    return e;
+                }
+
                 // Check if song is firsts in album
                 if (e.trackNumber === 1) {
                     // Check song name
-                    if (
-                        this.introsHaveInName.some((introName: string) => {
-                            return e.songName.toLowerCase().includes(introName);
-                        })
-                    ) {
-                        return e;
-                    }
 
                     if (e.duration < this.introsLength) {
                         return e;

@@ -7,6 +7,12 @@ import { SongNotRemoveFilter } from "./filters/songNotRemoveFilter";
 import { SongNameFilter } from "./filters/songNameFilter";
 import { SongDanceabilityFilter } from "./filters/songDanceabilityFilter";
 import { SongAcousticnessFilter } from "./filters/songAcousticnessFilter";
+import { SongEnergyFilter } from "./filters/songEnergyFilter";
+import { SongInstrumentalnessFilter } from "./filters/songInstrumentalnessFilter";
+import { SongValenceFilter } from "./filters/songValenceFilter";
+import { SongTempoFilter } from "./filters/songTempoFilter";
+import { SongSpeechinessFilter } from "./filters/songSpeechinessFilter";
+import { SongLivenessFilter } from "./filters/songLivenessFilter";
 
 export class FilterTool extends AbstractTool {
     static availableFilter = [
@@ -16,6 +22,12 @@ export class FilterTool extends AbstractTool {
         AuthorPopularityFilter,
         SongDanceabilityFilter,
         SongAcousticnessFilter,
+        SongEnergyFilter,
+        SongInstrumentalnessFilter,
+        SongValenceFilter,
+        SongTempoFilter,
+        SongSpeechinessFilter,
+        SongLivenessFilter,
     ];
     filters: Array<Filter> = [];
 
