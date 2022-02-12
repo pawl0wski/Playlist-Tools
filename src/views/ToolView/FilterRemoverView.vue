@@ -14,7 +14,11 @@
         <h2 v-if="!loading && isAnySongsToRemove">
             <span class="main-color">Songs</span> to remove.
         </h2>
-        <FiltersList :filters="getFilters" @addClicked="addNewFilter()" />
+        <FiltersList
+            :filters="getFilters"
+            @addClicked="addNewFilter()"
+            @deleteFilter="deleteFilter"
+        />
         <button
             v-if="!loading && isAnySongsToRemove"
             :disabled="buttonDisabled ? 1 : 0"
@@ -116,12 +120,16 @@ export default defineComponent({
         getFilteredSongs(): Array<Song> {
             return this.$data.filterTool!.getFilteredSongs();
         },
+        deleteFilter(filter: Filter) {
+            this.$data.filterTool?.dropFilter(filter);
+        },
         addNewFilter() {
             const component = this;
 
             Swal.fire({
                 title: "Add a new filter",
                 text: "Select new filter to continue",
+                confirmButtonColor: "#14CC60",
                 background: "#08262D",
                 color: "white",
                 html: `${this.getAvailableFilters
@@ -148,11 +156,15 @@ export default defineComponent({
                             "#f" +
                                 f.filterName.toLowerCase().split(" ").join("-")
                         );
-                        filterButton?.addEventListener("click", () => {
+                        filterButton?.addEventListener("click", async () => {
                             let okButton =
                                 document.querySelector(".swal2-confirm")!;
                             // @ts-ignore
                             okButton.onclick();
+
+                            let newFilter = new f();
+                            await newFilter.editWithSwalBuilder();
+                            component.filterTool?.addFilter(newFilter);
                         });
                     });
                 },

@@ -76,4 +76,8 @@ button {
         cursor: wait;
     }
 }
+
+div.swal2-range {
+    background-color: $content-color !important;
+}
 </style>

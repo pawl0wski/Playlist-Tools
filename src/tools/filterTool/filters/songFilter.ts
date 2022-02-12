@@ -12,6 +12,10 @@ export class SongFilter extends Filter {
         this.selectedSong = song;
     }
 
+    editWithSwalBuilder(): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
+
     filter(songs: Array<Song>): Array<Song> {
         return songs.filter((e: Song) => {
             return e.id === this.selectedSong.id;

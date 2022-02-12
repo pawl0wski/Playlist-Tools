@@ -13,6 +13,10 @@ export class AuthorFilter extends SelectValueFilter {
         this.selected = author;
     }
 
+    editWithSwalBuilder(): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
+
     static getSelectableValues(songs: Song[]): any[] {
         return songs.map((e: Song) => {
             return e.author;

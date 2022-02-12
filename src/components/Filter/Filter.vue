@@ -1,7 +1,7 @@
 <template>
     <div class="filter">
         {{ filter.toString() }}
-        <i class="fa-solid fa-xmark"></i>
+        <i class="fas fa-xmark" @click="deleteFilter"></i>
     </div>
 </template>
 
@@ -10,10 +10,16 @@ import { defineComponent } from "vue";
 import { Filter } from "@/tools/filterTool/filter";
 
 export default defineComponent({
+    emits: ["deleteFilter"],
     props: {
         filter: {
             type: Object as () => Filter,
             required: true,
+        },
+    },
+    methods: {
+        deleteFilter() {
+            this.$emit("deleteFilter", this.$props.filter);
         },
     },
 });
@@ -21,7 +27,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 div.filter {
-    padding: 1rem 0.5rem;
+    padding: 0.5rem 1rem;
     background-color: $content-color;
+
+    border-radius: $border-radius;
+
+    i {
+        margin-left: 0.5rem;
+        color: $main-color;
+        cursor: pointer;
+    }
 }
 </style>

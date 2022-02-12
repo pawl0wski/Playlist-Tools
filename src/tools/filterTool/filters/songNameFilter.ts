@@ -13,6 +13,10 @@ export class SongNameFilter extends InputTextFilter {
         this.value = value.toLowerCase();
     }
 
+    editWithSwalBuilder(): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
+
     filter(songs: Song[]): Song[] {
         return songs.filter((e: Song) => {
             return e.songName.toLowerCase().includes(this.value);

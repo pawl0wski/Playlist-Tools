@@ -4,6 +4,7 @@
             v-for="filter in filters"
             :key="filter"
             :filter="filter"
+            @deleteFilter="deleteFilter"
         />
 
         <button id="filter-add" @click="addButtonClicked">ADD</button>
@@ -16,7 +17,7 @@ import FilterComponent from "./Filter.vue";
 import { Filter } from "@/tools/filterTool/filter";
 
 export default defineComponent({
-    emits: ["addClicked"],
+    emits: ["addClicked", "deleteFilter"],
     components: {
         FilterComponent,
     },
@@ -30,6 +31,9 @@ export default defineComponent({
         addButtonClicked() {
             this.$emit("addClicked");
         },
+        deleteFilter(filter: Filter) {
+            this.$emit("deleteFilter", filter);
+        },
     },
 });
 </script>
@@ -39,6 +43,8 @@ div.filters-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 0.7rem;
 
     margin: 1rem 0rem;
 

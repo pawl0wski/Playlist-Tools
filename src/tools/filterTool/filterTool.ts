@@ -8,9 +8,9 @@ import { SongNameFilter } from "./filters/songNameFilter";
 
 export class FilterTool extends AbstractTool {
     static availableFilter = [
-        AuthorFilter,
-        SongFilter,
-        SongNameFilter,
+        // AuthorFilter,
+        // SongFilter,
+        // SongNameFilter,
         AuthorPopularityFilter,
     ];
     filters: Array<Filter> = [];
@@ -59,7 +59,7 @@ export class FilterTool extends AbstractTool {
 
     dropFilter(filter: Filter) {
         this.filters = this.filters.filter((f: Filter) => {
-            return f === filter;
+            return f !== filter;
         });
     }
 
