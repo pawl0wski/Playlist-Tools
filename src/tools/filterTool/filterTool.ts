@@ -5,6 +5,7 @@ import { AuthorFilter } from "./filters/authorFilter";
 import { AuthorPopularityFilter } from "./filters/authorPopularityFilter";
 import { SongNotRemoveFilter } from "./filters/songNotRemoveFilter";
 import { SongNameFilter } from "./filters/songNameFilter";
+import { SongDanceabilityFilter } from "./filters/songDanceabilityFilter";
 
 export class FilterTool extends AbstractTool {
     static availableFilter = [
@@ -12,6 +13,7 @@ export class FilterTool extends AbstractTool {
         // SongFilter,
         // SongNameFilter,
         AuthorPopularityFilter,
+        SongDanceabilityFilter,
     ];
     filters: Array<Filter> = [];
 

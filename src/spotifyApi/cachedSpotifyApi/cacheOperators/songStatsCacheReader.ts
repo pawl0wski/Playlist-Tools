@@ -7,15 +7,15 @@ export class SongStatsCacheReader extends CacheReader {
     }): SongStats {
         return {
             id: object["id"],
-            acousticness: parseInt(object["acousticness"]),
-            danceability: parseInt(object["danceability"]),
-            energy: parseInt(object["energy"]),
-            instrumentalness: parseInt(object["instrumentalness"]),
-            liveness: parseInt(object["liveness"]),
-            loudness: parseInt(object["loudness"]),
-            speechiness: parseInt(object["speechiness"]),
-            tempo: parseInt(object["tempo"]),
-            valence: parseInt(object["valence"]),
+            acousticness: parseFloat(object["acousticness"]),
+            danceability: parseFloat(object["danceability"]),
+            energy: parseFloat(object["energy"]),
+            instrumentalness: parseFloat(object["instrumentalness"]),
+            liveness: parseFloat(object["liveness"]),
+            loudness: parseFloat(object["loudness"]),
+            speechiness: parseFloat(object["speechiness"]),
+            tempo: parseFloat(object["tempo"]),
+            valence: parseFloat(object["valence"]),
         };
     }
 }
