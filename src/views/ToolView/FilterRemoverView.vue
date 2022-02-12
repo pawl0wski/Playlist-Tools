@@ -261,6 +261,8 @@ div.selectable-filter {
 
     align-items: center;
 
+    padding-left: 0.5rem;
+
     cursor: pointer;
 
     margin-bottom: 0.5rem;

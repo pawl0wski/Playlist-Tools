@@ -1,5 +1,5 @@
 import { Song } from "@/spotifyApi/interfaces/song";
-import { InputNumberSwalBuilder } from "./filterBuilder/inputNumberSwalBuilder";
+import { SelectRangeSwalBuilder } from "./filterBuilder/selectRangeSwalBuilder";
 import { SwalBuilder } from "./filterBuilder/swalBuilder";
 export abstract class Filter {
     static filterName: string;
@@ -27,19 +27,32 @@ export abstract class SelectValueFilter extends Filter {
     }
 }
 
-export abstract class InputNumberFilter extends Filter {
+export abstract class SelectRangeFilter extends Filter {
     minValue: number = 0;
     maxValue: number = 100;
     value: number = 0;
+    greater: boolean = true;
+
+    abstract getValueToComparison(song: Song): number;
+
+    filter(songs: Song[]): Song[] {
+        return songs.filter((song: Song) => {
+            return this.greater
+                ? this.getValueToComparison(song) > this.value
+                : this.getValueToComparison(song) < this.value;
+        });
+    }
 
     async editWithSwalBuilder() {
-        let swalBuilder = new InputNumberSwalBuilder(
-            "Select value",
+        let swalBuilder = new SelectRangeSwalBuilder(
+            "Select range",
             `Select value from ${this.minValue} to ${this.maxValue}`,
             this.minValue,
             this.maxValue
         );
-        this.value = await swalBuilder.build();
+        let dataFromAlert = await swalBuilder.build();
+        this.value = dataFromAlert.value;
+        this.greater = dataFromAlert.greater;
     }
 
     constructor(value: number = 0) {

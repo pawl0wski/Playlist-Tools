@@ -1,18 +1,16 @@
 import { Song } from "@/spotifyApi/interfaces/song";
-import { InputNumberFilter } from "../filter";
+import { SelectRangeFilter } from "../filter";
 
-export class SongDanceabilityFilter extends InputNumberFilter {
+export class SongDanceabilityFilter extends SelectRangeFilter {
     static filterName = "Song danceability filter";
     static filterDesc = "Remove songs by danceability";
     static filterIcon = "fas fa-face-laugh-beam";
 
-    filter(songs: Song[]): Song[] {
-        return songs.filter((e: Song) => {
-            return e.songStats?.danceability! < this.value / 100;
-        });
+    getValueToComparison(song: Song): number {
+        return song.songStats?.danceability! * 100;
     }
 
     toString() {
-        return `song danceability < ${this.value}%`;
+        return `song danceability ${this.greater ? ">" : "<"} ${this.value}%`;
     }
 }

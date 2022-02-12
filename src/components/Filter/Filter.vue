@@ -30,6 +30,8 @@ div.filter {
     padding: 0.5rem 1rem;
     background-color: $content-color;
 
+    padding-left: 1rem;
+
     border-radius: $border-radius;
 
     i {

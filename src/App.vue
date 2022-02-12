@@ -41,7 +41,7 @@ span.main-color {
     color: $main-color;
 }
 
-input {
+input[type="text"] {
     height: 3em;
     width: 30em;
     background-color: $content-color;
