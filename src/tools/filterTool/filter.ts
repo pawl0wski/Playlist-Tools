@@ -1,20 +1,34 @@
 import { Song } from "@/spotifyApi/interfaces/song";
-
-export enum FilterType {
-    yesOrNo = 1,
-    selectValue = 2,
-    inputText = 3,
-}
-
 export abstract class Filter {
-    abstract filterName: string;
-    abstract filterDesc: string;
-    abstract filterIcon: string;
-    abstract filterType: FilterType;
+    static filterName: string;
+    static filterDesc: string;
+    static filterIcon: string;
 
     abstract filter(songs: Array<Song>): Array<Song>;
 
     toString() {
-        return this.filterName;
+        return "";
     }
+}
+
+export abstract class YesNoFilter extends Filter {
+    abstract selected: boolean;
+}
+
+export abstract class SelectValueFilter extends Filter {
+    abstract selected: any;
+
+    static getSelectableValues(songs: Array<Song>): Array<any> {
+        return [];
+    }
+}
+
+export abstract class InputNumberFilter extends Filter {
+    abstract maxValue: number;
+    abstract minValue: number;
+    abstract value: number;
+}
+
+export abstract class InputTextFilter extends Filter {
+    abstract value: string;
 }

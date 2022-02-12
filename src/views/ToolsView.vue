@@ -14,12 +14,18 @@
                 description="Remove duplicated songs in your playlist."
             />
         </router-link>
-
-        <Tool
-            icon="fas fa-filter"
-            title="Remove songs by <span class='main-color'>filter</span>."
-            description="Remove duplicated songs in your playlist."
-        />
+        <router-link
+            class="router-link"
+            :to="{
+                name: 'FilterRemoverTool',
+            }"
+        >
+            <Tool
+                icon="fas fa-filter"
+                title="Remove songs by <span class='main-color'>filter</span>."
+                description="Remove duplicated songs in your playlist."
+            />
+        </router-link>
         <router-link
             class="router-link"
             :to="{

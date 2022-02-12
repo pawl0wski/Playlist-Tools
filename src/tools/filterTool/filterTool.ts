@@ -1,24 +1,26 @@
 import { Song } from "@/spotifyApi/interfaces/song";
 import { AbstractTool } from "../tool";
 import { Filter } from "./filter";
+import { AuthorFilter } from "./filters/authorFilter";
+import { AuthorPopularityFilter } from "./filters/authorPopularityFilter";
 import { SongFilter } from "./filters/songFilter";
+import { SongNameFilter } from "./filters/songNameFilter";
 
-class FilterTool extends AbstractTool {
+export class FilterTool extends AbstractTool {
+    static availableFilter = [
+        AuthorFilter,
+        SongFilter,
+        SongNameFilter,
+        AuthorPopularityFilter,
+    ];
     filters: Array<Filter> = [];
 
     public async doWork(): Promise<void> {
         await this.getSongsFromPlaylist();
 
-        let playlistSongs = this.playlistSongs!;
-        let songsToDelete: Array<Song> = [];
+        let songsToDelete = this.getFilteredSongs();
 
-        this.filters.forEach((filter: Filter) => {
-            let filteredSongsByThisFilter = filter.filter(this.playlistSongs!);
-            playlistSongs = playlistSongs.filter((e: Song) => {
-                return !filteredSongsByThisFilter.includes(e);
-            });
-            songsToDelete.push(...filteredSongsByThisFilter);
-        });
+        this.filters = [];
 
         await this.removeSongs(songsToDelete);
     }
@@ -31,6 +33,20 @@ class FilterTool extends AbstractTool {
         );
         this.playlistSongs = songsFromPlaylist;
         return songsFromPlaylist;
+    }
+
+    getFilteredSongs(): Array<Song> {
+        let playlistSongs = this.playlistSongs!;
+        let songsToDelete: Array<Song> = [];
+
+        this.filters.forEach((filter: Filter) => {
+            let filteredSongsByThisFilter = filter.filter(this.playlistSongs!);
+            playlistSongs = playlistSongs.filter((e: Song) => {
+                return !filteredSongsByThisFilter.includes(e);
+            });
+            songsToDelete.push(...filteredSongsByThisFilter);
+        });
+        return songsToDelete;
     }
 
     getFilters(): Array<Filter> {

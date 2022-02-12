@@ -1,11 +1,10 @@
 import { Song } from "@/spotifyApi/interfaces/song";
-import { Filter, FilterType } from "../filter";
+import { Filter } from "../filter";
 
 export class SongFilter extends Filter {
-    filterName = "Song filter";
-    filterDesc = "Remove specific song";
-    filterIcon = "fa-solid fa-circle-minus";
-    filterType = FilterType.selectValue;
+    static filterName = "Song filter";
+    static filterDesc = "Remove specific song";
+    static filterIcon = "fas fa-circle-minus";
     selectedSong: Song;
 
     constructor(song: Song) {
