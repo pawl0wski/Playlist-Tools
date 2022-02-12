@@ -11,10 +11,11 @@
     </div>
     <div class="filter-remover" v-if="playlistToPurge">
         <PlaylistHeader :playlist="playlistToPurge" />
-        <h2 v-if="!loading && isAnySongsToRemove">
+        <h2 v-if="!loading">
             <span class="main-color">Songs</span> to remove.
         </h2>
         <FiltersList
+            v-if="!loading"
             :filters="getFilters"
             @addClicked="addNewFilter()"
             @deleteFilter="deleteFilter"
@@ -30,7 +31,7 @@
             <Spinner />
             <p>Getting songs from Spotify...</p>
         </div>
-        <div class="songs" v-if="!loading && isAnySongsToRemove">
+        <div class="songs" v-if="!loading">
             <div
                 class="song-component"
                 :key="song"
@@ -49,8 +50,8 @@
         </div>
         <div class="no-filters" v-if="!isAnySongsToRemove && !loading">
             <i class="fas fa-filter"></i>
-            <h3>Select filters.</h3>
-            <p>You need to select at least one filter.</p>
+            <h3>Add filters.</h3>
+            <p>The filters you added did not filter out any songs.</p>
         </div>
     </div>
 </template>
@@ -117,9 +118,7 @@ export default defineComponent({
         onSongSelectionChanged(song: Song, newSelection: boolean) {
             this.$data.filterTool?.excludeSongFromFilter(song);
         },
-        getFilteredSongs(): Array<Song> {
-            return this.$data.filterTool!.getFilteredSongs();
-        },
+
         deleteFilter(filter: Filter) {
             this.$data.filterTool?.dropFilter(filter);
         },
@@ -179,6 +178,9 @@ export default defineComponent({
         getAvailableFilters() {
             return FilterTool.availableFilter;
         },
+        getFilteredSongs(): Array<Song> {
+            return this.$data.filterTool!.getFilteredSongs();
+        },
     },
 });
 </script>
@@ -186,7 +188,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 h2 {
     text-align: center;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 div.spinner-wrapper {

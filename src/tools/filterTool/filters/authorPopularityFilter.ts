@@ -9,7 +9,7 @@ export class AuthorPopularityFilter extends InputNumberFilter {
 
     filter(songs: Song[]): Song[] {
         return songs.filter((e: Song) => {
-            return e.author?.popularity;
+            return e.author!.popularity! < this.value;
         });
     }
 

@@ -46,7 +46,9 @@ div.filters-wrapper {
     flex-wrap: wrap;
     gap: 0.7rem;
 
-    margin: 1rem 0rem;
+    justify-content: center;
+
+    margin: 1rem 10vw;
 
     button#filter-add {
         padding: 0.5rem 1rem;

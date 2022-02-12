@@ -3,7 +3,7 @@ import { AbstractTool } from "../tool";
 import { Filter } from "./filter";
 import { AuthorFilter } from "./filters/authorFilter";
 import { AuthorPopularityFilter } from "./filters/authorPopularityFilter";
-import { SongFilter } from "./filters/songFilter";
+import { SongNotRemoveFilter } from "./filters/songNotRemoveFilter";
 import { SongNameFilter } from "./filters/songNameFilter";
 
 export class FilterTool extends AbstractTool {
@@ -39,13 +39,28 @@ export class FilterTool extends AbstractTool {
         let playlistSongs = this.playlistSongs!;
         let songsToDelete: Array<Song> = [];
 
-        this.filters.forEach((filter: Filter) => {
-            let filteredSongsByThisFilter = filter.filter(this.playlistSongs!);
-            playlistSongs = playlistSongs.filter((e: Song) => {
-                return !filteredSongsByThisFilter.includes(e);
+        this.filters
+            .filter((filter: Filter) => {
+                return !(filter instanceof SongNotRemoveFilter);
+            })
+            .forEach((filter: Filter) => {
+                let filteredSongsByThisFilter = filter.filter(
+                    this.playlistSongs!
+                );
+                playlistSongs = playlistSongs.filter((e: Song) => {
+                    return !filteredSongsByThisFilter.includes(e);
+                });
+                songsToDelete.push(...filteredSongsByThisFilter);
             });
-            songsToDelete.push(...filteredSongsByThisFilter);
-        });
+
+        this.filters
+            .filter((filter: Filter) => {
+                return filter instanceof SongNotRemoveFilter;
+            })
+            .forEach((filter: Filter) => {
+                songsToDelete = filter.filter(songsToDelete);
+            });
+
         return songsToDelete;
     }
 
@@ -64,7 +79,7 @@ export class FilterTool extends AbstractTool {
     }
 
     excludeSongFromFilter(song: Song) {
-        this.addFilter(new SongFilter(song));
+        this.addFilter(new SongNotRemoveFilter(song));
     }
 
     async removeSongs(songsToRemove: Array<Song>) {
