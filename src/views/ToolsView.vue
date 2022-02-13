@@ -33,7 +33,7 @@
             }"
         >
             <Tool
-                icon="fas fa-broom"
+                icon="fas fa-clock"
                 title="Remove <span class='main-color'>intros</span>."
                 description="Remove duplicated songs in your playlist."
             />
