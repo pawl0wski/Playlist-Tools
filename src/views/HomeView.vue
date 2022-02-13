@@ -6,19 +6,22 @@
         </h2>
         <div class="tools-wrapper">
             <ToolInfo
-                title="Some tool"
-                description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem "
+                title="Filter your playlists"
+                description="You want only your favorite artist's songs in your playlist, or you want to keep only energetic songs. Use this tool to easily filter your playlist."
                 image="https://www.w3schools.com/css/paris.jpg"
+                itemName="FilterRemoverTool"
             ></ToolInfo>
             <ToolInfo
-                title="Some tool"
-                description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem "
+                title="Delete duplications"
+                description="Accidentally added two of the same songs to a playlist? Instead of looking for duplicates yourself, use this tool."
                 image="https://www.w3schools.com/css/paris.jpg"
+                itemName="DuplicationRemoverTool"
             ></ToolInfo>
             <ToolInfo
-                title="Some tool"
-                description="lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem "
+                title="Remove intros"
+                description="Have you added all the songs from the album and sometimes you get the album intros playing? Clean your playlist with this tool."
                 image="https://www.w3schools.com/css/paris.jpg"
+                itemName="IntroRemoverTool"
             ></ToolInfo>
         </div>
     </div>

@@ -15,7 +15,9 @@
         <div class="tool-info-text">
             <h2>{{ title }}</h2>
             <p>{{ description }}</p>
-            <a id="tool-info-link">Check it out ➔ </a>
+            <router-link :to="{ name: itemName }">
+                <a id="tool-info-link">Check it out ➔ </a>
+            </router-link>
         </div>
     </div>
 </template>
@@ -105,6 +107,10 @@ div.tool-info {
             width: 50%;
             min-width: 200px;
         }
+    }
+
+    a {
+        text-decoration: none;
     }
 
     a#tool-info-link {
