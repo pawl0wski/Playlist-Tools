@@ -8,6 +8,7 @@
 <script lang="ts">
 import Spinner from "@/components/Spinner.vue";
 import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
+import Swal from "sweetalert2";
 import { defineComponent } from "vue";
 export default defineComponent({
     components: {
@@ -24,6 +25,19 @@ export default defineComponent({
                 authorizationToken,
                 parseInt(expiresIn)
             );
+            try {
+                await spotify.getMeId();
+            } catch (e) {
+                await Swal.fire({
+                    title: "You are not added as a tester",
+                    text: "We are waiting for Spotify to allow us to publish the application to more users. Add your API key or wait a few days.",
+                    icon: "error",
+                });
+                spotify.logOut();
+                await this.$router.push({
+                    name: "Home",
+                });
+            }
             await this.$router.push({
                 name: "Home",
                 params: { newAuthorized: 1 },
