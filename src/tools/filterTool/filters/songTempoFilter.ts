@@ -4,7 +4,7 @@ import { SelectRangeFilter } from "../filter";
 export class SongTempoFilter extends SelectRangeFilter {
     static filterName = "Song Tempo filter";
     static filterDesc = "Remove songs by value of tempo";
-    static filterIcon = "fas fa-gauge-circle-bolt";
+    static filterIcon = "fas fa-gauge";
     maxValue: number = 250;
 
     getValueToComparison(song: Song): number {

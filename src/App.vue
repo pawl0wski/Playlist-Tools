@@ -80,4 +80,15 @@ button {
 div.swal2-range {
     background-color: $content-color !important;
 }
+
+input.swal2-input {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: lighten($color: $content-color, $amount: 2);
+
+    &:focus {
+        outline: none;
+    }
+}
 </style>

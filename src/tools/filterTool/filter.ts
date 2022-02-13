@@ -1,4 +1,5 @@
 import { Song } from "@/spotifyApi/interfaces/song";
+import { InputTextSwalBuilder } from "./filterBuilder/inputTextSwalBuilder";
 import { SelectRangeSwalBuilder } from "./filterBuilder/selectRangeSwalBuilder";
 import { SwalBuilder } from "./filterBuilder/swalBuilder";
 export abstract class Filter {
@@ -63,5 +64,27 @@ export abstract class SelectRangeFilter extends Filter {
 }
 
 export abstract class InputTextFilter extends Filter {
-    abstract value: string;
+    value: string = "";
+    include: boolean = true;
+
+    async editWithSwalBuilder() {
+        let swalBuilder = new InputTextSwalBuilder("Input text to filter", "");
+        let dataFromAlert = await swalBuilder.build();
+        this.value = dataFromAlert.value.toLowerCase();
+        this.include = dataFromAlert.include;
+    }
+
+    abstract getValueToComparison(song: Song): string;
+
+    filter(songs: Song[]): Song[] {
+        return songs.filter((song: Song) => {
+            return this.include
+                ? this.getValueToComparison(song)
+                      .toLowerCase()
+                      .includes(this.value)
+                : !this.getValueToComparison(song)
+                      .toLowerCase()
+                      .includes(this.value);
+        });
+    }
 }

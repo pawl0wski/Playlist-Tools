@@ -26,12 +26,16 @@ export class SelectRangeSwalBuilder extends SwalBuilder {
             <p>
             <label>
                 <span class="swal2-label">Select value from ${this.minValue} to ${this.maxValue}</span>
-                <input style="width: 80%" id="selected-value" min=${this.minValue} max=${this.maxValue} type="range">
-            </label></p>
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                    <input style="width: 80%" id="selected-value" min=${this.minValue} max=${this.maxValue} type="range" oninput="this.nextElementSibling.value = this.value" >
+                    <output style="width: 3em">0</output>
+                </div>
+            </label>
+            </p>
             <p>
             <label>
                 <input type="checkbox" id="greater">
-                <span class="swal2-label">Only songs greater than?</span>
+                <span class="swal2-label">Greater than selected value</span>
             </label></p>`,
             preConfirm: () => {
                 return {

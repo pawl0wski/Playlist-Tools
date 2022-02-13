@@ -13,21 +13,22 @@ import { SongValenceFilter } from "./filters/songValenceFilter";
 import { SongTempoFilter } from "./filters/songTempoFilter";
 import { SongSpeechinessFilter } from "./filters/songSpeechinessFilter";
 import { SongLivenessFilter } from "./filters/songLivenessFilter";
+import { AuthorNameFilter } from "./filters/authorNameFilter";
 
 export class FilterTool extends AbstractTool {
     static availableFilter = [
         // AuthorFilter,
-        // SongFilter,
-        // SongNameFilter,
+        SongNameFilter,
         AuthorPopularityFilter,
         SongDanceabilityFilter,
         SongAcousticnessFilter,
         SongEnergyFilter,
+        SongTempoFilter,
         SongInstrumentalnessFilter,
         SongValenceFilter,
-        SongTempoFilter,
         SongSpeechinessFilter,
         SongLivenessFilter,
+        AuthorNameFilter,
     ];
     filters: Array<Filter> = [];
 
