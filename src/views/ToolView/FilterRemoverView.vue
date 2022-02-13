@@ -107,7 +107,6 @@ export default defineComponent({
                 SpotifyApiFactory.createCachedSpotifyApiWithDefaultApp();
             this.$data.filterTool = new FilterTool(playlist, spotifyApi);
             await this.$data.filterTool!.getSongsFromPlaylist();
-            this.isAnySongsToRemove = !!this.$data.filterTool!.filters.length;
             this.$data.loading = false;
         },
         async deleteFilteredSongsClicked() {
@@ -184,7 +183,9 @@ export default defineComponent({
             return FilterTool.availableFilter;
         },
         getFilteredSongs(): Array<Song> {
-            return this.$data.filterTool!.getFilteredSongs();
+            let songs = this.$data.filterTool!.getFilteredSongs();
+            this.$data.isAnySongsToRemove = !!songs.length;
+            return songs;
         },
     },
 });
@@ -220,6 +221,7 @@ div.filter-remover {
 
 button {
     margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 div.no-filters {
