@@ -4,7 +4,7 @@ import { SelectValueFilter } from "../filter";
 export class AuthorFilter extends SelectValueFilter {
     static filterName = "Author Filter";
     static filterDesc = "Remove songs by artist";
-    static filterIcon = "fas fa-user-music";
+    static filterIcon = "fas fa-user";
 
     getValueToComparison(song: Song): string {
         return song.author?.name!;

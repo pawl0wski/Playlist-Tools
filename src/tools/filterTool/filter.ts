@@ -32,10 +32,12 @@ export abstract class SelectValueFilter extends Filter {
     filter(songs: Song[]): Song[] {
         return songs.filter((song: Song) => {
             return this.include
-                ? this.getValueToComparison(song).toLowerCase() ===
-                      this.selected
-                : this.getValueToComparison(song).toLowerCase() !==
-                      this.selected;
+                ? this.getValueToComparison(song)
+                      .toLowerCase()
+                      .includes(this.selected)
+                : !this.getValueToComparison(song)
+                      .toLowerCase()
+                      .includes(this.selected);
         });
     }
 
