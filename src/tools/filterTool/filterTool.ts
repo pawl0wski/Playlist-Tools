@@ -15,6 +15,8 @@ import { SongSpeechinessFilter } from "./filters/songSpeechinessFilter";
 import { SongLivenessFilter } from "./filters/songLivenessFilter";
 import { AuthorNameFilter } from "./filters/authorNameFilter";
 import { AuthorGenresFilter } from "./filters/authorGenresFilter";
+import { ExplicitFilter } from "./filters/explicitFilter";
+import { MarketFilter } from "./filters/marketFilter";
 
 export class FilterTool extends AbstractTool {
     static availableFilter = [
@@ -31,6 +33,8 @@ export class FilterTool extends AbstractTool {
         SongLivenessFilter,
         AuthorNameFilter,
         AuthorGenresFilter,
+        ExplicitFilter,
+        MarketFilter,
     ];
     filters: Array<Filter> = [];
 
