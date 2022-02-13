@@ -91,4 +91,12 @@ input.swal2-input {
         outline: none;
     }
 }
+
+select {
+    font-size: medium;
+    background-color: lighten($color: $content-color, $amount: 2);
+    padding: 0.5rem 1rem;
+    border-style: none;
+    border-radius: $border-radius;
+}
 </style>
