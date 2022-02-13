@@ -1,4 +1,3 @@
-import { Author } from "@/spotifyApi/interfaces/author";
 import { Song } from "@/spotifyApi/interfaces/song";
 import { SelectValueFilter } from "../filter";
 
@@ -6,26 +5,22 @@ export class AuthorFilter extends SelectValueFilter {
     static filterName = "Author Filter";
     static filterDesc = "Remove songs by artist";
     static filterIcon = "fas fa-user-music";
-    selected: Author;
 
-    constructor(author: Author) {
-        super();
-        this.selected = author;
+    getValueToComparison(song: Song): string {
+        return song.author?.name!;
     }
 
-    editWithSwalBuilder(): Promise<void> {
-        throw new Error("Method not implemented.");
+    getSelectableValues(songs: Song[]): string[] {
+        return [
+            ...new Set(
+                songs.map((e: Song) => {
+                    return e.author?.name!;
+                })
+            ),
+        ];
     }
 
-    static getSelectableValues(songs: Song[]): any[] {
-        return songs.map((e: Song) => {
-            return e.author;
-        });
-    }
-
-    filter(songs: Song[]): Song[] {
-        return songs.filter((e: Song) => {
-            return e.id === this.selected.id;
-        });
+    toString() {
+        return `author is${this.include ? "" : " not"} "${this.selected}"`;
     }
 }

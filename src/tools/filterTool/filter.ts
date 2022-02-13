@@ -1,11 +1,12 @@
 import { Song } from "@/spotifyApi/interfaces/song";
 import { InputTextSwalBuilder } from "./filterBuilder/inputTextSwalBuilder";
 import { SelectRangeSwalBuilder } from "./filterBuilder/selectRangeSwalBuilder";
-import { SwalBuilder } from "./filterBuilder/swalBuilder";
+import { SelectValueSwalBuilder } from "./filterBuilder/selectValueSwalBuilder";
 export abstract class Filter {
     static filterName: string;
     static filterDesc: string;
     static filterIcon: string;
+    static needSongsBeforeInitialization: boolean = false;
 
     abstract editWithSwalBuilder(): Promise<void>;
 
@@ -21,11 +22,35 @@ export abstract class YesNoFilter extends Filter {
 }
 
 export abstract class SelectValueFilter extends Filter {
-    abstract selected: any;
+    selected: string = "";
+    include: boolean = true;
+    public songs: Array<Song> = [];
+    static needSongsBeforeInitialization: boolean = true;
 
-    static getSelectableValues(songs: Array<Song>): Array<any> {
-        return [];
+    abstract getValueToComparison(song: Song): string;
+
+    filter(songs: Song[]): Song[] {
+        return songs.filter((song: Song) => {
+            return this.include
+                ? this.getValueToComparison(song).toLowerCase() ===
+                      this.selected
+                : this.getValueToComparison(song).toLowerCase() !==
+                      this.selected;
+        });
     }
+
+    async editWithSwalBuilder() {
+        let swalBuilder = new SelectValueSwalBuilder(
+            "Select value",
+            ``,
+            this.getSelectableValues(this.songs)
+        );
+        let dataFromAlert = await swalBuilder.build();
+        this.selected = dataFromAlert.value;
+        this.include = dataFromAlert.include;
+    }
+
+    abstract getSelectableValues(songs: Array<Song>): Array<string>;
 }
 
 export abstract class SelectRangeFilter extends Filter {

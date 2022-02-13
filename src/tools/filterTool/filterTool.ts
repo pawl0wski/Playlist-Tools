@@ -17,7 +17,7 @@ import { AuthorNameFilter } from "./filters/authorNameFilter";
 
 export class FilterTool extends AbstractTool {
     static availableFilter = [
-        // AuthorFilter,
+        AuthorFilter,
         SongNameFilter,
         AuthorPopularityFilter,
         SongDanceabilityFilter,
@@ -43,13 +43,17 @@ export class FilterTool extends AbstractTool {
     }
 
     async getSongsFromPlaylist(): Promise<Array<Song>> {
-        let songsFromPlaylist = await this.spotifyApi.getSongsFromPlaylist(
-            this.playlist.id,
-            true,
-            true
-        );
-        this.playlistSongs = songsFromPlaylist;
-        return songsFromPlaylist;
+        if (!this.playlistSongs) {
+            let songsFromPlaylist = await this.spotifyApi.getSongsFromPlaylist(
+                this.playlist.id,
+                true,
+                true
+            );
+            this.playlistSongs = songsFromPlaylist;
+            return songsFromPlaylist;
+        } else {
+            return this.playlistSongs;
+        }
     }
 
     getFilteredSongs(): Array<Song> {

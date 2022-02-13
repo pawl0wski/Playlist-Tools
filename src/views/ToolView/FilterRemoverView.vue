@@ -162,6 +162,11 @@ export default defineComponent({
                             okButton.onclick();
 
                             let newFilter = new f();
+                            if (f.needSongsBeforeInitialization) {
+                                // @ts-ignore
+                                newFilter.songs =
+                                    await component.$data.filterTool?.getSongsFromPlaylist();
+                            }
                             await newFilter.editWithSwalBuilder();
                             component.filterTool?.addFilter(newFilter);
                         });
