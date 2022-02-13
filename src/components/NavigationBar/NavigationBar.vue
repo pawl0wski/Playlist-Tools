@@ -104,7 +104,7 @@ nav {
     align-items: center;
     justify-content: left;
 
-    padding: 0px 1em;
+    padding-left: 1em;
 
     gap: 2em;
 
