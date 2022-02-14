@@ -2,7 +2,7 @@
     <div class="home">
         <Header></Header>
         <h2>
-            What you can do with <span class="main-color">Spotify Tools</span>?
+            What you can do with <span class="main-color">Playlist Tools</span>?
         </h2>
         <div class="tools-wrapper">
             <ToolInfo

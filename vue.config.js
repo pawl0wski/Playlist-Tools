@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  publicPath: "/Spotify-Tools",
+  publicPath: "/Playlist-Tools",
   css: {
     loaderOptions: {
       sass: {

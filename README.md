@@ -1,4 +1,4 @@
-# Spotify Tools 🛠️🎧
+# Playlist Tools 🛠️🎧
 
 Organize your playlists with a variety of tools.
 

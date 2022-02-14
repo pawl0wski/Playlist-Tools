@@ -3,7 +3,7 @@
         <div id="header-filter">
             <h1>
                 Organize your playlists with
-                <span class="main-color">Spotify Tools</span>.
+                <span class="main-color">Playlist Tools</span>.
             </h1>
             <SpotifyLoginButton v-if="!showLoginButton"></SpotifyLoginButton>
         </div>

@@ -40,7 +40,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
     data() {
         return {
-            name: "Spotify Tools",
+            name: "Playlist Tools",
             avatarUrl: "",
             username: "",
             isAuthorized: false,

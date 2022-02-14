@@ -19,7 +19,7 @@
         </div>
         <div class="project-info">
             <h2>
-                Why I created <span class="main-color">Spotify Tools</span>?
+                Why I created <span class="main-color">Playlist Tools</span>?
             </h2>
             <p>
                 I really wanted to test my skills in the Vue framework so I
