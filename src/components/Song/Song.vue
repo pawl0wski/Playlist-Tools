@@ -7,6 +7,15 @@
                 {{ song.author.name }} | {{ songLength }}
                 {{ additionalInfo ? "| " + additionalInfo : "" }}
             </p>
+            <p>
+                <a
+                    class="play-on-spotify"
+                    target="_blank"
+                    :href="'https://open.spotify.com/track/' + song.id"
+                >
+                    <img src="../../assets/spotify.png" alt="Spotify logo" />
+                </a>
+            </p>
         </div>
         <div class="song-play" @click="toggleSong" v-if="song.previewUrl">
             <i v-if="!playing" class="fas fa-play"></i>
@@ -78,20 +87,19 @@ export default defineComponent({
 div.song {
     display: flex;
     flex-direction: row;
-    align-content: center;
-    justify-items: center;
+    align-items: center;
 
     border-radius: $border-radius;
 
     background-color: $content-color;
 
-    height: 70px;
     width: min(600px, 98vw);
 
-    padding: 0.65em;
+    padding: 0.65em 1em;
 
     img:first-child {
         height: 100%;
+        max-height: 60px;
         width: auto;
     }
 
@@ -111,6 +119,20 @@ div.song {
             color: $paragraph-color;
             overflow: hidden;
             height: 1.5em;
+
+            &:last-of-type {
+                margin-top: 0.2rem;
+            }
+        }
+
+        a.play-on-spotify {
+            text-decoration: none;
+            color: $main-color;
+
+            i:first-child {
+                font-size: 1.25rem;
+                color: $main-color;
+            }
         }
     }
 
