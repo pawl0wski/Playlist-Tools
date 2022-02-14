@@ -5,8 +5,7 @@ import { AbstractTool } from "../tool";
 
 export class DuplicationRemoverTool extends AbstractTool {
     private duplicatedSongs: Array<{
-        song: Song;
-        howMuchDuplications: number;
+        songs: Array<Song>;
     }>;
 
     constructor(playlist: Playlist, spotifyApi: SpotifyApi) {
@@ -33,25 +32,31 @@ export class DuplicationRemoverTool extends AbstractTool {
     }
 
     getDuplications(): Array<{
-        song: Song;
-        howMuchDuplications: number;
+        songs: Array<Song>;
     }> {
         if (this.duplicatedSongs.length == 0) {
-            let songCount: { [key: string]: number } = {};
+            let duplicatedSongs: { [key: string]: Array<Song> } = {};
             this.playlistSongs!.forEach((e: Song) => {
-                if (Object.keys(songCount).includes(e.id)) {
-                    songCount[e.id] += 1;
+                let lowerCasedSongName = e.songName.toLowerCase();
+                let lowerCasedAuthorName = e.author?.name.toLowerCase();
+                if (
+                    Object.keys(duplicatedSongs).includes(
+                        lowerCasedAuthorName + lowerCasedSongName
+                    )
+                ) {
+                    duplicatedSongs[
+                        lowerCasedAuthorName + lowerCasedSongName
+                    ].push(e);
                 } else {
-                    songCount[e.id] = 1;
+                    duplicatedSongs[lowerCasedAuthorName + lowerCasedSongName] =
+                        [e];
                 }
             });
-            for (const songId in songCount) {
-                if (songCount[songId] > 1) {
+
+            for (const songId in duplicatedSongs) {
+                if (duplicatedSongs[songId].length > 1) {
                     this.duplicatedSongs.push({
-                        song: this.playlistSongs!.filter((e: Song) => {
-                            return e.id == songId;
-                        })[0],
-                        howMuchDuplications: songCount[songId],
+                        songs: duplicatedSongs[songId],
                     });
                 }
             }
@@ -61,10 +66,14 @@ export class DuplicationRemoverTool extends AbstractTool {
 
     async removeDuplications() {
         let songsToRemove: Array<Song> = [];
+        let songsToKeep: Array<Song> = [];
 
         this.duplicatedSongs.forEach(
-            (e: { song: Song; howMuchDuplications: number }) => {
-                songsToRemove.push(e.song);
+            (arrayOfSongsToRemove: { songs: Array<Song> }) => {
+                songsToKeep.push(arrayOfSongsToRemove.songs[0]);
+                arrayOfSongsToRemove.songs.forEach((e: Song) => {
+                    songsToRemove.push(e);
+                });
             }
         );
 
@@ -73,6 +82,6 @@ export class DuplicationRemoverTool extends AbstractTool {
             songsToRemove
         );
 
-        await this.spotifyApi.addSongsToPlaylist(this.playlist, songsToRemove);
+        await this.spotifyApi.addSongsToPlaylist(this.playlist, songsToKeep);
     }
 }

@@ -106,7 +106,18 @@ export default defineComponent({
     computed: {
         getDuplications(): Array<{ song: Song; howMuchDuplications: number }> {
             if (this.$data.duplicationRemoverTool) {
-                return this.$data.duplicationRemoverTool.getDuplications()!;
+                let duplications: Array<{ songs: Array<Song> }> =
+                    this.$data.duplicationRemoverTool.getDuplications()!;
+                let duplicationsToShow: Array<{
+                    song: Song;
+                    howMuchDuplications: number;
+                }> = duplications.map((e: { songs: Array<Song> }) => {
+                    return {
+                        song: e.songs[0],
+                        howMuchDuplications: e.songs.length,
+                    };
+                });
+                return duplicationsToShow;
             } else {
                 return [];
             }
