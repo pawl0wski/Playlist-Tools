@@ -50,7 +50,6 @@ div.playlist {
     div.playlist-cover {
         width: calc(230px / 10 * 9);
         height: calc(230px / 10 * 9);
-        border-radius: $border-radius;
 
         background-size: cover;
         background-position: center;

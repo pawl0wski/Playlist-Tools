@@ -91,7 +91,6 @@ div.song {
     padding: 0.65em;
 
     img:first-child {
-        border-radius: 5px;
         height: 100%;
         width: auto;
     }

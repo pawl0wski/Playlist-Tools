@@ -40,7 +40,6 @@ header {
         height: 170px;
         width: 170px;
         background-color: red;
-        border-radius: $border-radius;
 
         background-position: center;
         background-size: cover;
