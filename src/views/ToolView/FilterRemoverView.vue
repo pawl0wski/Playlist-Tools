@@ -113,6 +113,18 @@ export default defineComponent({
             this.$data.buttonDisabled = true;
             await this.$data.filterTool?.doWork();
             this.$data.buttonDisabled = false;
+            Swal.mixin({
+                toast: true,
+                position: "bottom-end",
+                timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#08262D",
+                color: "white",
+            }).fire({
+                icon: "success",
+                title: "Songs removed.",
+            });
         },
         onSongSelectionChanged(song: Song, newSelection: boolean) {
             this.$data.filterTool?.excludeSongFromFilter(song);

@@ -57,6 +57,7 @@ import { SpotifyApiFactory } from "@/spotifyApi/spotifyApiFactory";
 import { Playlist } from "@/spotifyApi/interfaces/playlist";
 import { Song } from "@/spotifyApi/interfaces/song";
 import { DuplicationRemoverTool } from "@/tools/duplicationRemoverTool/duplicationRemoverTool";
+import Swal from "sweetalert2";
 
 export default defineComponent({
     components: {
@@ -101,6 +102,18 @@ export default defineComponent({
             await this.$data.duplicationRemoverTool?.doWork();
             await this.onPlaylistSelect(this.$data.playlistToPurge!);
             this.$data.buttonDisabled = false;
+            Swal.mixin({
+                toast: true,
+                position: "bottom-end",
+                timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#08262D",
+                color: "white",
+            }).fire({
+                icon: "success",
+                title: "Duplications removed.",
+            });
         },
     },
     computed: {
