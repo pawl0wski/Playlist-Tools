@@ -9,6 +9,11 @@
         ></div>
         <h3 class="playlist-title">{{ title }}</h3>
         <p class="playlist-description">{{ description }}</p>
+        <img
+            class="spotify-logo"
+            src="../../assets/spotify.png"
+            alt="Spotify logo"
+        />
     </div>
 </template>
 
@@ -63,6 +68,10 @@ div.playlist {
 
     &:hover {
         background-color: lighten($color: $content-color, $amount: 0.7);
+    }
+
+    img.spotify-logo {
+        height: 24px;
     }
 }
 </style>

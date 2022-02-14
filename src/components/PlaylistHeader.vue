@@ -7,6 +7,11 @@
         <div class="playlist-content">
             <h2>{{ playlist.name }}</h2>
             <p>{{ playlist.description }}</p>
+            <img
+                class="spotify-logo"
+                src="../assets/spotify.png"
+                alt="Spotify logo"
+            />
         </div>
     </header>
 </template>
@@ -62,6 +67,11 @@ header {
             margin: 0;
         }
     }
+    img.spotify-logo {
+        margin-top: 1rem;
+        height: auto;
+        width: 80px;
+    }
 }
 
 @media screen and (max-width: 700px) {
@@ -70,6 +80,10 @@ header {
         text-align: center;
 
         padding: 2em;
+    }
+
+    img.spotify-logo {
+        margin: 0 auto;
     }
 
     div.playlist-content {
