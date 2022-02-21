@@ -23,7 +23,7 @@
             <Tool
                 icon="fas fa-filter"
                 title="Remove songs by <span class='main-color'>filter</span>."
-                description="Remove duplicated songs in your playlist."
+                description="Remove songs using established rules."
             />
         </router-link>
         <router-link
@@ -35,7 +35,7 @@
             <Tool
                 icon="fas fa-clock"
                 title="Remove <span class='main-color'>intros</span>."
-                description="Remove duplicated songs in your playlist."
+                description="Remove short album beginnings from your playlists."
             />
         </router-link>
         <router-link
@@ -47,7 +47,7 @@
             <Tool
                 icon="fas fa-copy"
                 title="<span class='main-color'>Copy</span> playlist."
-                description="Remove duplicated songs in your playlist."
+                description="Copy the contents of one playlist to another."
             />
         </router-link>
     </div>
