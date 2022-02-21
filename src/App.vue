@@ -99,4 +99,8 @@ select {
     border-style: none;
     border-radius: $border-radius;
 }
+
+a{
+    color: white;
+}
 </style>
