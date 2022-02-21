@@ -64,6 +64,7 @@ div.playlist {
     p.playlist-description {
         color: $paragraph-color;
         margin: 0.5em 0;
+        line-break: anywhere;
     }
 
     &:hover {
