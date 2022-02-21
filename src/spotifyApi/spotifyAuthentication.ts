@@ -61,7 +61,7 @@ export class SpotifyAuthentication {
         authUrlParams.append("client_id", this.clientId);
         authUrlParams.append("scope", this.scope);
 
-        window.location.href = authUrl + authUrlParams.toString();
+        window.location.replace(authUrl + authUrlParams.toString());
     }
 
     public getTokenOrRenew(): string | undefined {
