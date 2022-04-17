@@ -8,7 +8,7 @@
 export default {
     data() {
         return {
-            link: "https://github.com/Jeboczek/Spotify-Tools",
+            link: "https://github.com/jpawlowskii/Spotify-Tools",
             content: "View code on Github",
         };
     },

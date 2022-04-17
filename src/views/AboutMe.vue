@@ -25,7 +25,7 @@
                 I really wanted to test my skills in the Vue framework so I
                 decided to make an application that would allow me to clean up
                 my playlists. This project is open source you can see it
-                <a href="https://github.com/Jeboczek/Spotify-Tools">here</a>.
+                <a href="https://github.com/jpawlowskii/Spotify-Tools">here</a>.
             </p>
             <h2>
                 Hey, I found a <span class="main-color">bug</span> where can i
@@ -81,7 +81,7 @@ export default defineComponent({
 
         // Get info about author
         let authorData = (
-            await axios.get("https://api.github.com/users/jeboczek")
+            await axios.get("https://api.github.com/users/jpawlowskii")
         ).data;
 
         this.$data.authorUsername = authorData.name;
@@ -91,7 +91,7 @@ export default defineComponent({
         // Get author repositories
         let authorRepositoriesData = (
             await axios.get(
-                "https://api.github.com/users/jeboczek/repos?per_page=100"
+                "https://api.github.com/users/jpawlowskii/repos?per_page=100"
             )
         ).data;
 
