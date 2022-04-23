@@ -25,7 +25,8 @@
                 I really wanted to test my skills in the Vue framework so I
                 decided to make an application that would allow me to clean up
                 my playlists. This project is open source you can see it
-                <a href="https://github.com/jpawlowskii/Spotify-Tools">here</a>.
+                <a href="https://github.com/jpawlowskii/Playlist-Tools">here</a
+                >.
             </p>
             <h2>
                 Hey, I found a <span class="main-color">bug</span> where can i
