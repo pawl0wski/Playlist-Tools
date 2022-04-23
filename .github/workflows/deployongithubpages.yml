@@ -14,5 +14,14 @@ jobs:
         uses: actions/setup-node@v3.1.1
       - name: Install all dependencies
         run: npm ci
-      - name: "Run deploy.sh"
-        run: deploy.sh
+      - name: Create .env
+        run: touch .env && echo "VUE_APP_SPOTIFY_KEY=${{ secrets.VUE_APP_SPOTIFY_KEY }}" > .env && echo "VUE_APP_REDIRECT_DOMAIN=${{ secrets.VUE_APP_REDIRECT_DOMAIN }}" >> .env
+      - name: Build project
+        run: npm run build
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
