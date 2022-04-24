@@ -8,7 +8,7 @@
 export default {
     data() {
         return {
-            link: "https://github.com/jpawlowskii/Playlist-Tools",
+            link: "https://github.com/pawl0wski/Playlist-Tools",
             content: "View code on Github",
         };
     },

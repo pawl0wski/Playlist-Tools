@@ -9,6 +9,6 @@ cd dist
 git init
 git add -A
 git commit -m 'New deployment'
-git push -f git@github.com:jpawlowskii/Playlist-Tools.git master:gh-pages
+git push -f git@github.com:pawl0wski/Playlist-Tools.git master:gh-pages
 
 cd -

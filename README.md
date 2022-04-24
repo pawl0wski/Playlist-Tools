@@ -29,4 +29,4 @@ or build it with
 
 ## Visit Playlist Tools
 
-[Click here](https://jpawlowskii.github.io/Playlist-Tools/)
+[Click here](https://pawl0wski.github.io/Playlist-Tools/)
