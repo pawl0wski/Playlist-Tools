@@ -7,9 +7,9 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.27.2",
     "core-js": "^3.22.5",
-    "sweetalert2": "^11.3.6",
+    "sweetalert2": "^11.4.14",
     "vue": "^3.2.33",
     "vue-router": "^4.0.15"
   },
