@@ -97,11 +97,13 @@ export default defineComponent({
         ).data;
 
         authorRepositoriesData.forEach((e: { [key: string]: any }) => {
-            this.$data.repos.push({
-                title: e.name,
-                description: e.description,
-                url: e.svn_url,
-            });
+            if (!e["fork"]){
+                this.$data.repos.push({
+                    title: e.name,
+                    description: e.description,
+                    url: e.svn_url,
+                });
+            }
         });
 
         this.$data.isLoading = false;
